@@ -1,15 +1,13 @@
-import 'dart:ffi';
-
 import 'package:app/base/get/get_common_view.dart';
+import 'package:app/res/r.dart';
 import 'package:app/res/style.dart';
 import 'package:app/routes/routes.dart';
-import 'package:app/ui/page/setting_page/avatar_page.dart';
 import 'package:app/ui/page/setting_page/key_page.dart';
 import 'package:app/util/image_util.dart';
 import 'package:app/util/widget/ICard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+
 import 'setting_controller.dart';
 
 class SettingPage extends GetCommonView<SettingController> {
@@ -37,7 +35,19 @@ class SettingPage extends GetCommonView<SettingController> {
                   child: Column(
                     children: [
                       ListTile(
-                        title: const Text("头像"),
+                        title: Row(
+                          children: const [
+                            CircleAvatar(
+                              radius: 20,
+                              backgroundImage:
+                                  AssetImage(R.assetsImagesApplication),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("头像"),
+                          ],
+                        ),
                         trailing: const Icon(
                           Icons.navigate_next,
                         ),
@@ -48,10 +58,20 @@ class SettingPage extends GetCommonView<SettingController> {
                       ),
                       ListTile(
                         title: const Text("手机号码"),
+                        subtitle: const Text("18270952773"),
                         trailing: const Icon(
                           Icons.navigate_next,
                         ),
                         onTap: () {},
+                      ),
+                      ListTile(
+                        title: const Text("修改密码"),
+                        trailing: const Icon(
+                          Icons.navigate_next,
+                        ),
+                        onTap: () {
+                          Get.toNamed(Routes.passwordPage);
+                        },
                       ),
                     ],
                   ),
@@ -78,15 +98,24 @@ class SettingPage extends GetCommonView<SettingController> {
                 const SizedBox(
                   height: 20,
                 ),
-                 SizedBox(
-                  width: MediaQuery.of(context).size.width - 20,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Get.offAllNamed(Routes.loginPage);
-                    },
-                    child: const Text("退出登录"),
+                InkWell(
+                  child: Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width - 20,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.blueAccent, width: 1),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: const Text(
+                      "退出登录",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
-                )
+                  onTap: () {
+                    Get.offAllNamed(Routes.loginPage);
+                  },
+                ),
               ],
             ),
           )),

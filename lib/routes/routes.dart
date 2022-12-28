@@ -1,16 +1,18 @@
-import 'package:app/ui/page/home_page/home_binding.dart';
+import 'package:app/ui/page/app_page/app_binding.dart';
+import 'package:app/ui/page/app_page/app_page.dart';
 import 'package:app/ui/page/login_page/login_binding.dart';
 import 'package:app/ui/page/login_page/login_page.dart';
+import 'package:app/ui/page/setting_page/password_binding.dart';
+import 'package:app/ui/page/setting_page/password_page.dart';
 import 'package:app/ui/page/setting_page/setting_binding.dart';
 import 'package:app/ui/page/setting_page/setting_page.dart';
 import 'package:app/ui/page/setting_page/setting_page.dart';
 import 'package:app/ui/page/setting_page/setting_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import '../ui/page/home_page/home_page.dart';
 
 abstract class Routes {
   // 主页
-  static const String homePage = '/home';
+  static const String appPage = '/app';
 
   // 登录页
   static const String loginPage = '/login';
@@ -18,13 +20,16 @@ abstract class Routes {
   // 个人设置页
   static const String settingPage = '/setting';
 
+  // 密码设置页
+  static const String passwordPage = '/password';
+
 
   // 页面集合
   static final routePage = [
     GetPage(
-      name: homePage,
-      page: () => const HomePage(),
-      binding: HomeBinding(),
+      name: appPage,
+      page: () => const AppPage(),
+      binding: AppBinding(),
     ),
     GetPage(
       name: loginPage,
@@ -35,6 +40,11 @@ abstract class Routes {
       name: settingPage,
       page: () => const SettingPage(),
       binding: SettingBinding(),
+    ),
+    GetPage(
+      name: passwordPage,
+      page: () => const PasswordPage(),
+      binding: PasswordBinding(),
     )
   ];
 }

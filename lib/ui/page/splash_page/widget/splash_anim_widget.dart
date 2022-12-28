@@ -16,7 +16,7 @@ class SplashAnimWidget extends GetCommonView<SplashController> {
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       onEnd: () {
-        Get.offNamed(Routes.homePage);
+        Get.offNamed(Routes.appPage);
       },
       opacity: controller.opacityLevel,
       duration: const Duration(milliseconds: 1000),
