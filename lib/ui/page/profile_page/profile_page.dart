@@ -1,10 +1,11 @@
 import 'package:app/base/get/get_common_view.dart';
+import 'package:app/model/User.dart';
 import 'package:app/res/r.dart';
 import 'package:app/res/style.dart';
 import 'package:app/routes/routes.dart';
+import 'package:app/ui/page/app_page/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'profile_controller.dart';
 
 class ProfilePage extends GetCommonView<ProfileController> {
@@ -25,27 +26,27 @@ class ProfilePage extends GetCommonView<ProfileController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 20),
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 40,
                     backgroundColor: Color(0xffFDCF09),
                     child: CircleAvatar(
                       radius: 40,
-                      backgroundImage: AssetImage(R.assetsImagesApplication),
+                      backgroundImage: NetworkImage(controller.user.avatar),
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    "Surest",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                  Text(
+                    controller.user.name,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.smartphone, size: 12,),
+                    children:  [
+                      const Icon(Icons.smartphone, size: 12,),
                       Text(
-                        "18270952773",
-                        style: TextStyle(fontSize: 13),
+                        controller.user.phone,
+                        style: const TextStyle(fontSize: 13),
                       )
                     ],
                   ),

@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
+import '../../../model/User.dart';
+import '../app_page/app_controller.dart';
+
 class KeyPage extends StatefulWidget {
   const KeyPage({Key? key}) : super(key: key);
 
@@ -12,6 +15,8 @@ class KeyPage extends StatefulWidget {
 }
 
 class _KeyPageState extends State<KeyPage> {
+  UserEntity get user => Get.find<AppController>().user;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,10 +49,10 @@ class _KeyPageState extends State<KeyPage> {
                     const SizedBox(height: 10),
 
                     Row(
-                      children: const [
+                      children:  [
                         Text(
-                          "key: datadatadatadatadata",
-                          style: TextStyle(fontSize: 15),
+                          "key: ${user.idkey}",
+                          style: const TextStyle(fontSize: 15),
                         ),
                       ],
                     ),

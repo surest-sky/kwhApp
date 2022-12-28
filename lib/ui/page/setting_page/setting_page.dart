@@ -4,6 +4,7 @@ import 'package:app/res/style.dart';
 import 'package:app/routes/routes.dart';
 import 'package:app/ui/page/setting_page/key_page.dart';
 import 'package:app/util/image_util.dart';
+import 'package:app/util/save/sp_util.dart';
 import 'package:app/util/widget/ICard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,16 +37,16 @@ class SettingPage extends GetCommonView<SettingController> {
                     children: [
                       ListTile(
                         title: Row(
-                          children: const [
+                          children:  [
                             CircleAvatar(
                               radius: 20,
                               backgroundImage:
-                                  AssetImage(R.assetsImagesApplication),
+                              NetworkImage(controller.user.avatar),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
-                            Text("头像"),
+                            const Text("头像"),
                           ],
                         ),
                         trailing: const Icon(
@@ -53,12 +54,11 @@ class SettingPage extends GetCommonView<SettingController> {
                         ),
                         onTap: () async {
                           final base64 = await ImageUtil.imageSelect();
-                          print(base64);
                         },
                       ),
                       ListTile(
                         title: const Text("手机号码"),
-                        subtitle: const Text("18270952773"),
+                        subtitle: Text(controller.user.phone),
                         trailing: const Icon(
                           Icons.navigate_next,
                         ),
@@ -113,6 +113,7 @@ class SettingPage extends GetCommonView<SettingController> {
                     ),
                   ),
                   onTap: () {
+                    SpUtil.deleteUserInfo();
                     Get.offAllNamed(Routes.loginPage);
                   },
                 ),

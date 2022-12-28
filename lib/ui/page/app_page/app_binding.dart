@@ -9,10 +9,10 @@ import 'app_controller.dart';
 class AppBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => AppController());
     Get.lazyPut(() => ShareController());
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => ProfileController());
     Get.lazyPut(() => TagController());
+    Get.lazyPut(() => AppController());
   }
 }

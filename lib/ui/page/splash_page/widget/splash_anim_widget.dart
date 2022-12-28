@@ -1,9 +1,12 @@
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/res/r.dart';
 import 'package:app/routes/routes.dart';
+import 'package:app/ui/page/app_page/app_controller.dart';
 import 'package:app/ui/page/splash_page/splash_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
+import '../../../../model/User.dart';
 
 /// @class : SplashAnimWidget
 /// @date : 2021/08/17
@@ -16,6 +19,10 @@ class SplashAnimWidget extends GetCommonView<SplashController> {
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       onEnd: () {
+        if(!controller.isLogin) {
+          Get.offNamed(Routes.loginPage);
+          return;
+        }
         Get.offNamed(Routes.appPage);
       },
       opacity: controller.opacityLevel,

@@ -14,7 +14,7 @@ void main() async {
     GetMaterialApp(
       getPages: Routes.routePage,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.appPage,
+      initialRoute: '/',
       builder: EasyLoading.init(),
       defaultTransition: Transition.fade,
       initialBinding: SplashBinding(),

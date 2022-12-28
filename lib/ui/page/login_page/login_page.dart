@@ -11,10 +11,10 @@ class LoginPage extends GetCommonView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("登录/注册"),
+        title: const Text("斑点熊"),
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 100),
+        padding: const EdgeInsets.only(top: 100),
         child: SizedBox(
           height: 300,
           child: WebViewWidget(controller: controller.webviewController),

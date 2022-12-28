@@ -2,6 +2,7 @@ import 'package:app/base/get/get_common_view.dart';
 import 'package:app/ui/page/app_page/widget/bottom_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../../../util/screen_util.dart';
 import 'app_controller.dart';
 
 class AppPage extends GetCommonView<AppController> {
@@ -9,6 +10,8 @@ class AppPage extends GetCommonView<AppController> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.removeSystemTransparent(context);
+
     return Scaffold(
       bottomNavigationBar: BottomBar.getSalomonBottomBar(controller.currentIndex, controller.setCurrentIndex),
       body: IndexedStack(
