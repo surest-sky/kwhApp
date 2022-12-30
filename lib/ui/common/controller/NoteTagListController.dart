@@ -11,67 +11,42 @@ enum mode {
   list,
 }
 
-class NoteListController extends BaseGetController {
-  mode get apiMode => tagName.isEmpty ? mode.list : mode.tag;
+class NoteTagListController extends BaseGetController {
   final EasyRefreshController refreshController = EasyRefreshController(
     controlFinishRefresh: true,
     controlFinishLoad: true,
   );
   String tagName = "";
-
   var notes = <NoteItem>[].obs;
-
   final pageSize = 10;
   var page = 1;
-
-  ScrollController scrollController = ScrollController();
-  final Throttle throttle = Throttle();
 
   reset() {
     notes.value = [];
     page = 1;
   }
 
+  deleted(String dataid) {
+    final List<NoteItem> _notes = [];
+    notes.value.forEach((element) {
+      if (element.dataid != dataid) {
+        _notes.add(element);
+      }
+    });
+
+    notes.value = _notes;
+    notes.refresh();
+  }
+
   // 判定加载更多
   onloadMore() {
-      page ++;
-      dispatchList();
+    page++;
+    initTagList();
   }
 
   onLoadRefresh() {
     page = 1;
-    dispatchList();
-  }
-
-  dispatchList() {
-    if(apiMode == mode.tag) {
-      initTagList();
-    }else{
-      initList();
-    }
-  }
-
-  // 初始化列表数据
-  initList() {
-    ToastUtil.showLoading();
-    request.getIndexData({
-      "tag": tagName,
-      "page": page,
-      "page_size": pageSize,
-    }, success: (List<NoteItem> lists) {
-      // 执行渲染逻辑
-      notes.value = [...notes.value, ...lists];
-      notes.refresh();
-      ToastUtil.dismiss();
-
-      if (lists.length < pageSize) {
-        refreshController.finishLoad(IndicatorResult.noMore);
-      }else{
-        refreshController.finishLoad(IndicatorResult.success);
-      }
-
-      refreshController.finishRefresh();
-    });
+    initTagList();
   }
 
   // 获取标签对应的列表数据
@@ -89,7 +64,7 @@ class NoteListController extends BaseGetController {
 
       if (lists.length < pageSize) {
         refreshController.finishLoad(IndicatorResult.noMore);
-      }else{
+      } else {
         refreshController.finishLoad(IndicatorResult.success);
       }
 

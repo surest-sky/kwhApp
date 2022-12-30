@@ -20,6 +20,18 @@ class HomeController extends BaseGetController{
     initList();
   }
 
+  deleted(String dataid) {
+    final List<NoteItem> _notes = [];
+    notes.value.forEach((element) {
+      if(element.dataid != dataid) {
+        _notes.add(element);
+      }
+    });
+
+    notes.value = _notes;
+    notes.refresh();
+  }
+
   onLoadRefresh() {
     page = 1;
     initList();

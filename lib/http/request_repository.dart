@@ -118,6 +118,25 @@ class RequestRepository {
     });
   }
 
+  // 获取笔记详情
+  deleteNote(String dataId, {
+    Success<bool>? success,
+    Fail? fail,
+  }) {
+    Request.post<dynamic>(RequestApi.deleteNote , {
+      "dataid": dataId
+    },
+        success: (data) {
+      if (success != null) {
+        success(true);
+      }
+    }, fail: (code, msg) {
+      if (fail != null) {
+        fail(code, msg);
+      }
+    });
+  }
+
   getAllTagsOld({
     Success<TagsModel>? success,
     Fail? fail,

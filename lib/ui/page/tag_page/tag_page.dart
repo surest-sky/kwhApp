@@ -2,7 +2,8 @@ import 'package:app/base/get/get_common_view.dart';
 import 'package:app/model/note_item.dart';
 import 'package:app/model/tag_chunk_note_item.dart';
 import 'package:app/model/tag_simple_model.dart';
-import 'package:app/ui/common/note/NoteBlockList.dart';
+import 'package:app/ui/common/controller/NoteTagListController.dart';
+import 'package:app/ui/common/note/NoteTagBlockList.dart';
 import 'package:app/ui/common/note/NoteDetail.dart';
 import 'package:app/util/widget/well_icon.dart';
 import 'package:app/util/widget/well_title.dart';
@@ -89,9 +90,7 @@ class TagPage extends GetCommonView<TagController> {
               showBarModalBottomSheet(
                 context: context,
                 backgroundColor: Colors.transparent,
-                builder: (context) => NoteBlockList(
-                  tagName: model.name,
-                ),
+                builder: (context) => NoteTagBlockList(tagName: model.name),
               );
             },
           )

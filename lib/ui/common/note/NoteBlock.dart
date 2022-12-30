@@ -1,3 +1,4 @@
+import 'package:app/model/action_model.dart';
 import 'package:app/model/note_item.dart';
 import 'package:app/routes/routes.dart';
 import 'package:app/ui/common/note/NoteDetail.dart';
@@ -9,13 +10,16 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../FloatModal.dart';
 import 'NoteAction.dart';
+import 'NoteDeleteConfirm.dart';
 
 class NoteBlock extends StatelessWidget {
   final NoteItem item;
+  late ActionModel action;
 
   NoteBlock({
     Key? key,
     required this.item,
+    required this.action,
   }) : super(key: key);
 
   Widget _itemAction(String text, IconData icon) {
@@ -67,10 +71,11 @@ class NoteBlock extends StatelessWidget {
       );
     }
 
+    // 操作更多
     void actionSheet(NoteItem item) {
       showFloatingModalBottomSheet(
         context: context,
-        builder: (context) => const NoteAction(),
+        builder: (context) =>  NoteAction(item: item, action: action,),
       );
     }
 

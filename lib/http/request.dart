@@ -73,6 +73,7 @@ class Request {
       ToastUtil.showLoading();
     }
     debugPrint("request url ==============> ${RequestApi.baseurl}$url");
+    debugPrint("parameters ==============> $parameters");
     ///校验参数中是否携带URL
     parameters.forEach((key, value) {
       if (url.contains(key)) {

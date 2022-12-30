@@ -17,10 +17,13 @@ class RequestApi{
   static const String getIndexData = 'data/get_index_data';
 
   // 获取标签列表数据
-  static const String getTagslist = '/tags/search_tag';
+  static const String getTagslist = 'tags/search_tag';
 
   // 获取文章详情
-  static const String getDetail = '/data/show_one_data/';
+  static const String getDetail = 'data/show_one_data/';
+
+  // 移除文章
+  static const String deleteNote = 'data/del_one_data';
 }
 
 

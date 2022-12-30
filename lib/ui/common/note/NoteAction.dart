@@ -1,7 +1,16 @@
+import 'package:app/model/action_model.dart';
+import 'package:app/model/note_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../FloatModal.dart';
+import 'NoteDeleteConfirm.dart';
 
 class NoteAction extends StatelessWidget {
-  const NoteAction({Key? key}) : super(key: key);
+  late NoteItem item;
+  late ActionModel action;
+
+  NoteAction({Key? key, required this.item, required this.action}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +28,13 @@ class NoteAction extends StatelessWidget {
             ListTile(
               title: const Text('移除'),
               leading: const Icon(Icons.delete),
-              onTap: () => Navigator.of(context).pop(),
+              onTap: () => {
+                Get.back(),
+                showFloatingModalBottomSheet(
+                  context: context,
+                  builder: (context) => NoteDeleteConfirm(item: item, action: action,),
+                ),
+              },
             )
           ],
         ),

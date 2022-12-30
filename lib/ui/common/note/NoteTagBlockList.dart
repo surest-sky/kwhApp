@@ -1,22 +1,19 @@
+import 'package:app/model/action_model.dart';
 import 'package:app/res/style.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../note/NoteBlock.dart';
-import '../controller/NoteListController.dart';
+import '../controller/NoteTagListController.dart';
 
-class NoteBlockList extends StatelessWidget {
-  NoteListController get noteListController => Get.find();
+class NoteTagBlockList extends StatelessWidget {
+  NoteTagListController get noteListController => Get.find();
 
-  final String? tagName;
-
-  NoteBlockList({super.key, this.tagName}){
-    if(tagName != null) {
-      noteListController.tagName = tagName!;
-    }
+  NoteTagBlockList({super.key,  required String tagName}) {
+    noteListController.tagName = tagName;
     noteListController.reset();
-    noteListController.dispatchList();
+    noteListController.initTagList();
   }
 
   Widget buildHeader() {
@@ -24,7 +21,7 @@ class NoteBlockList extends StatelessWidget {
       alignment: Alignment.topLeft,
       padding: const EdgeInsets.only(top: 20, bottom: 30, left: 10),
       child: Text(
-        "# $tagName",
+        "# ${noteListController.tagName}",
         style: const TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.bold,
@@ -40,7 +37,7 @@ class NoteBlockList extends StatelessWidget {
         color: Styles.styleBackgroundGray,
         child: Column(
           children: [
-            if (tagName != null) buildHeader(),
+            buildHeader(),
             Expanded(
               child: Obx(
                 () => EasyRefresh(
@@ -48,11 +45,10 @@ class NoteBlockList extends StatelessWidget {
                   onRefresh: () async => noteListController.onLoadRefresh(),
                   onLoad: () async => noteListController.onloadMore(),
                   child: ListView.builder(
-                    controller: noteListController.scrollController,
                     itemCount: noteListController.notes.length,
                     itemBuilder: (BuildContext context, int index) => Padding(
                       padding: const EdgeInsets.all(10),
-                      child: NoteBlock(item: noteListController.notes[index]),
+                      child: NoteBlock(item: noteListController.notes[index], action: ActionModel((dataid) => noteListController.deleted(dataid))),
                     ),
                   ),
                 ),
