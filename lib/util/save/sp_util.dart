@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app/base/app/global.dart';
 import 'package:app/model/User.dart';
 import 'package:app/util/save/sp_key.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +12,11 @@ class SpUtil {
   ///删除存储用户信息
   static deleteUserInfo() {
     Get.find<SharedPreferences>().remove(SPKey.keyUserInfo);
+  }
+
+  static updateUserInfo(UserEntity user) {
+    user.token = GlobalUtil.token;
+    putUserInfo(user);
   }
 
   // 写入登录用户信息

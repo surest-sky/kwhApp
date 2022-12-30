@@ -8,6 +8,8 @@ import 'package:app/ui/page/setting_page/setting_binding.dart';
 import 'package:app/ui/page/setting_page/setting_page.dart';
 import 'package:app/ui/page/setting_page/setting_page.dart';
 import 'package:app/ui/page/setting_page/setting_page.dart';
+import 'package:app/ui/page/splash_page/splash_binding.dart';
+import 'package:app/ui/page/splash_page/splash_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 abstract class Routes {
@@ -22,6 +24,9 @@ abstract class Routes {
 
   // 密码设置页
   static const String passwordPage = '/password';
+
+  // 密码设置页
+  static const String splashPage = '/splash';
 
 
   // 页面集合
@@ -45,6 +50,11 @@ abstract class Routes {
       name: passwordPage,
       page: () => const PasswordPage(),
       binding: PasswordBinding(),
-    )
+    ),
+    GetPage(
+      name: splashPage,
+      page: () => const SplashPage(),
+      binding: SplashBinding(),
+    ),
   ];
 }

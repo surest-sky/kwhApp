@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
+import 'base/app/g_binding.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Injection.init();
@@ -14,11 +16,10 @@ void main() async {
     GetMaterialApp(
       getPages: Routes.routePage,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: Routes.splashPage,
       builder: EasyLoading.init(),
       defaultTransition: Transition.fade,
-      initialBinding: SplashBinding(),
-      home: const SplashPage(),
+      // home: const SplashPage(),
     ),
   );
 }

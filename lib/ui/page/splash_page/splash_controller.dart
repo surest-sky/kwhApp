@@ -21,6 +21,7 @@ class SplashController  extends BaseGetController {
   lazyInitAnim(){
     Future.delayed(const Duration(milliseconds: 200), () {
        opacityLevel = 1.0;
+       update();
     });
   }
 

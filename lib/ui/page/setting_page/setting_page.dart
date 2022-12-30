@@ -5,7 +5,7 @@ import 'package:app/routes/routes.dart';
 import 'package:app/ui/page/setting_page/key_page.dart';
 import 'package:app/util/image_util.dart';
 import 'package:app/util/save/sp_util.dart';
-import 'package:app/util/widget/ICard.dart';
+import 'package:app/util/widget/i_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

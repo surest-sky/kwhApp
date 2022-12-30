@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:app/base/app/global.dart';
 import 'package:app/base/get/getx_controller_inject.dart';
 import 'package:app/util/save/sp_util.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +16,12 @@ class LoginController extends BaseGetController {
   final WebViewController webviewController =
       WebViewController.fromPlatformCreationParams(
           const PlatformWebViewControllerCreationParams());
-  final String url = "http://192.168.31.219:3000/auth/login";
+  final String url = "http://192.168.50.101:3000/auth/login";
 
   void setLogin(String user) {
     EasyLoading.showToast("登录成功");
     SpUtil.putUserInfo(UserEntity.fromJson(jsonDecode(user)));
-    initUser();
+    GlobalUtil.initUser();
     Get.toNamed(Routes.appPage);
   }
 

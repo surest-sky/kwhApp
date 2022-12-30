@@ -10,7 +10,6 @@ class AppPage extends GetCommonView<AppController> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.removeSystemTransparent(context);
 
     return Scaffold(
       bottomNavigationBar: BottomBar.getSalomonBottomBar(controller.currentIndex, controller.setCurrentIndex),

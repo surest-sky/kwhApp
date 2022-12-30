@@ -1,5 +1,5 @@
 import 'package:app/res/style.dart';
-import 'package:app/util/widget/ICard.dart';
+import 'package:app/util/widget/i_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
