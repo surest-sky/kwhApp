@@ -57,11 +57,11 @@ class RequestRepository {
     });
   }
 
-  getIndexData({
+  getIndexData(params, {
     Success<List<NoteItem>>? success,
     Fail? fail,
   }) {
-    Request.post<dynamic>(RequestApi.getIndexData, {}, success: (data) {
+    Request.post<dynamic>(RequestApi.getIndexData, params, success: (data) {
       if (success != null) {
         final List<NoteItem> result = [];
         final listResult = data as List<dynamic>;
@@ -77,14 +77,10 @@ class RequestRepository {
     });
   }
 
-  getTagslist(
-    String tag, {
+  getTagslist(params, {
     Success<List<NoteItem>>? success,
     Fail? fail,
   }) {
-    final params = {
-      "tag": tag
-    };
     Request.post<dynamic>(RequestApi.getTagslist, params,
         success: (data) {
       if (success != null) {
@@ -95,6 +91,25 @@ class RequestRepository {
           lists.add(data);
         }
         success(lists);
+      }
+    }, fail: (code, msg) {
+      if (fail != null) {
+        fail(code, msg);
+      }
+    });
+  }
+
+  // 获取笔记详情
+  getDataDetail(String dataId, {
+    Success<NoteItem>? success,
+    Fail? fail,
+  }) {
+    final url = RequestApi.getDetail + dataId;
+    Request.get<dynamic>(url, {},
+        success: (data) {
+      if (success != null) {
+        final NoteItem note = NoteItem.fromJson(data);
+        success(note);
       }
     }, fail: (code, msg) {
       if (fail != null) {

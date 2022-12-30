@@ -1,6 +1,7 @@
 import 'package:app/base/app/g_controller.dart';
 import 'package:app/base/app/global.dart';
 import 'package:app/http/request_repository.dart';
+import 'package:app/util/screen_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get_core/src/get_main.dart';

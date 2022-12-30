@@ -18,6 +18,9 @@ class RequestApi{
 
   // 获取标签列表数据
   static const String getTagslist = '/tags/search_tag';
+
+  // 获取文章详情
+  static const String getDetail = '/data/show_one_data/';
 }
 
 

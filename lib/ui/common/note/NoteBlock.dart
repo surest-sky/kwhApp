@@ -1,10 +1,14 @@
 import 'package:app/model/note_item.dart';
-import 'package:app/ui/common/NoteDetail.dart';
+import 'package:app/routes/routes.dart';
+import 'package:app/ui/common/note/NoteDetail.dart';
 import 'package:app/util/enum_util.dart';
 import 'package:app/util/widget/url_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../FloatModal.dart';
+import 'NoteAction.dart';
 
 class NoteBlock extends StatelessWidget {
   final NoteItem item;
@@ -23,7 +27,7 @@ class NoteBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget buildItem(String title, {Function()? onTap, bool isCancel = false }) {
+    Widget buildItem(String title, {Function()? onTap, bool isCancel = false}) {
       return InkWell(
         onTap: () {
           Navigator.of(context).pop();
@@ -32,11 +36,11 @@ class NoteBlock extends StatelessWidget {
           }
         },
         child: Container(
-          constraints: const BoxConstraints(
-            minHeight: 50
-          ),
+          constraints: const BoxConstraints(minHeight: 50),
           decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color: Colors.grey.shade100, width: isCancel ? 0 : 1)),
+            border: Border(
+                bottom: BorderSide(
+                    color: Colors.grey.shade100, width: isCancel ? 0 : 1)),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -64,26 +68,9 @@ class NoteBlock extends StatelessWidget {
     }
 
     void actionSheet(NoteItem item) {
-      showModalBottomSheet<void>(
+      showFloatingModalBottomSheet(
         context: context,
-        isScrollControlled: true,
-        backgroundColor: Colors.white,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
-          ),
-        ),
-        constraints: const BoxConstraints(
-          maxHeight: 170,
-        ),
-        builder: (context) {
-          return Column(
-            children: [
-
-            ],
-          );
-        },
+        builder: (context) => const NoteAction(),
       );
     }
 
@@ -97,7 +84,7 @@ class NoteBlock extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, 'showPage', arguments: item);
+        Get.toNamed(Routes.detailPage, arguments: item.dataid);
       },
       child: Container(
         height: 150,
@@ -105,7 +92,6 @@ class NoteBlock extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-
         padding: const EdgeInsets.only(top: 10, right: 10, left: 10, bottom: 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

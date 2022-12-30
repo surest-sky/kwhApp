@@ -7,7 +7,7 @@ import 'package:app/ui/page/tag_page/tag_page.dart';
 import 'package:app/util/save/sp_util.dart';
 import 'package:flutter/material.dart';
 
-class AppController extends BaseGetController{
+class AppController extends BaseGetController {
   int currentIndex = 0;
   late UserEntity user;
   bool isLogin = true;
@@ -26,10 +26,10 @@ class AppController extends BaseGetController{
 
   void initUser() {
     final _user = SpUtil.getUserInfo();
-    if(_user != null) {
+    if (_user != null) {
       user = _user;
       isLogin = true;
-    }else{
+    } else {
       isLogin = false;
     }
     update();

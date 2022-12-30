@@ -12,7 +12,6 @@ class AppBinding extends Bindings {
     Get.lazyPut(() => ShareController());
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => ProfileController());
-    Get.lazyPut(() => TagController());
     Get.lazyPut(() => AppController());
   }
 }
