@@ -12,7 +12,7 @@ enum mode {
 }
 
 class NoteListController extends BaseGetController {
-  mode get apiMode => tagName.isEmpty ? mode.tag : mode.list;
+  mode get apiMode => tagName.isEmpty ? mode.list : mode.tag;
   final EasyRefreshController refreshController = EasyRefreshController(
     controlFinishRefresh: true,
     controlFinishLoad: true,

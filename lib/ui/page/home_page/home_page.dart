@@ -1,12 +1,16 @@
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/res/style.dart';
-import 'package:app/ui/common/note/NoteBlockList.dart';
+import 'package:app/ui/common/note/NoteBlock.dart';
+import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import 'home_controller.dart';
 
 class HomePage extends GetCommonView<HomeController> {
-  const HomePage({super.key});
+   HomePage({super.key}) {
+    controller.onLoadRefresh();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +27,34 @@ class HomePage extends GetCommonView<HomeController> {
               style: TextStyle(fontSize: 30),
             ),
           ),
-          Expanded(child: NoteBlockList())
+          Expanded(
+            child: Container(
+              color: Styles.styleBackgroundGray,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Obx(
+                      () => EasyRefresh(
+                        controller: controller.refreshController,
+                        onRefresh: () async => controller.onLoadRefresh(),
+                        onLoad: () async => controller.onloadMore(),
+                        child: ListView.builder(
+                          itemCount: controller.notes.length,
+                          itemBuilder: (BuildContext context, int index) =>
+                              Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: NoteBlock(item: controller.notes[index]),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
   }
 }
-

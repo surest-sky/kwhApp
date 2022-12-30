@@ -13,7 +13,7 @@ class AppController extends BaseGetController {
   bool isLogin = true;
 
   final List<Widget> pages = [
-    const HomePage(),
+    HomePage(),
     const SharePage(),
     const TagPage(),
     const ProfilePage(),
