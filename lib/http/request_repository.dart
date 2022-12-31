@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:app/http/request.dart';
 import 'package:app/http/request_api.dart';
 import 'package:app/http/request_old.dart';
+import 'package:app/model/Params_share_model.dart';
+import 'package:app/model/share_data_model.dart';
 import 'package:app/model/Tags_model.dart';
 import 'package:app/model/User.dart';
 import 'package:app/model/note_item.dart';
@@ -151,6 +153,48 @@ class RequestRepository {
           notes.add(NoteItem.fromJson(element));
         });
         success(notes);
+      }
+    }, fail: (code, msg) {
+      if (fail != null) {
+        fail(code, msg);
+      }
+    });
+  }
+
+  // 笔记搜索
+  getShareData(params, {
+    Success<List<ShareDataModel>>? success,
+    Fail? fail,
+  }) {
+    Request.post<dynamic>(RequestApi.shareData, params,
+        success: (data) {
+      if (success != null) {
+        final List<ShareDataModel> shares = [];
+        (data as List<dynamic>).forEach((element) {
+          shares.add(ShareDataModel.fromJson(element));
+        });
+        success(shares);
+      }
+    }, fail: (code, msg) {
+      if (fail != null) {
+        fail(code, msg);
+      }
+    });
+  }
+
+  // 笔记搜索
+  createShare(ParamsShareModel params, {
+    Success<List<ShareDataModel>>? success,
+    Fail? fail,
+  }) {
+    Request.post<dynamic>(RequestApi.createShare, params,
+        success: (data) {
+      if (success != null) {
+        final List<ShareDataModel> shares = [];
+        (data as List<dynamic>).forEach((element) {
+          shares.add(ShareDataModel.fromJson(element));
+        });
+        success(shares);
       }
     }, fail: (code, msg) {
       if (fail != null) {

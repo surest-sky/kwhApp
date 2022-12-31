@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:date_format/date_format.dart';
+
 typedef PeriodicCallBack = void Function(Timer periodicTime);
 
 class TimeUtil {
@@ -13,6 +15,11 @@ class TimeUtil {
     Timer.periodic(periodic, (intervalTime) {
       click(intervalTime);
     });
+  }
+
+  static String convertFormatDate(int date) {
+    final dt = DateTime.fromMillisecondsSinceEpoch(date * 1000);
+    return formatDate(dt, [yyyy, '-', mm, '-', dd]);
   }
 }
 

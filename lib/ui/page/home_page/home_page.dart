@@ -44,7 +44,7 @@ class HomePage extends GetCommonView<HomeController> {
               padding: const EdgeInsets.all(10),
               child: NoteBlock(
                 item: controller.notes[index],
-                action: ActionModel((dataid) => controller.deleted(dataid)),
+                action: ActionModel(deleted: (dataid) => controller.deleted(dataid)),
               ),
             ),
           ),

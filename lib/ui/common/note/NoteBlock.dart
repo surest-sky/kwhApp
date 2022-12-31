@@ -22,60 +22,16 @@ class NoteBlock extends StatelessWidget {
     required this.action,
   }) : super(key: key);
 
-  Widget _itemAction(String text, IconData icon) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text(text)],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    Widget buildItem(String title, {Function()? onTap, bool isCancel = false}) {
-      return InkWell(
-        onTap: () {
-          Navigator.of(context).pop();
-          if (onTap != null) {
-            onTap();
-          }
-        },
-        child: Container(
-          constraints: const BoxConstraints(minHeight: 50),
-          decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(
-                    color: Colors.grey.shade100, width: isCancel ? 0 : 1)),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(fontSize: 16),
-              )
-            ],
-          ),
-        ),
-      );
-    }
-
-    void showButtonSheet() {
-      showBarModalBottomSheet(
-        expand: true,
-        context: context,
-        backgroundColor: Colors.transparent,
-        builder: (context) => NoteDetail(
-          item: item,
-        ),
-      );
-    }
-
     // 操作更多
     void actionSheet(NoteItem item) {
       showFloatingModalBottomSheet(
         context: context,
-        builder: (context) =>  NoteAction(item: item, action: action,),
+        builder: (context) => NoteAction(
+          item: item,
+          action: action,
+        ),
       );
     }
 
@@ -141,13 +97,15 @@ class NoteBlock extends StatelessWidget {
                     width: MediaQuery.of(context).size.width - 100,
                     child: UrlButton(item: item),
                   ),
-                  SizedBox(
-                    width: 40,
-                    child: IconButton(
-                      onPressed: () => actionSheet(item),
-                      icon: const Icon(Icons.more_horiz),
+                  if (action.isShow)
+                    SizedBox(
+                      width: 40,
+                      child: IconButton(
+                        onPressed: () => actionSheet(item),
+                        icon: const Icon(Icons.more_horiz),
+                      ),
                     ),
-                  )
+                  if (action.selectWidget != null) action.selectWidget!
                 ],
               ),
             ),

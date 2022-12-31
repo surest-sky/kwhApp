@@ -8,15 +8,25 @@ import 'package:get/get.dart';
 
 class SearchController extends BaseGetController{
   final TextEditingController searchController =
-  TextEditingController(text: "");
+  TextEditingController(text: "flutter");
   final EasyRefreshController refreshController = EasyRefreshController(
     controlFinishRefresh: true,
     controlFinishLoad: true,
   );
+
+  // 默认查询所需数据
+  var opacity = 0.0;
   bool isLoading = false;
   var notes = <NoteItem>[].obs;
   final pageSize = 10;
   var page = 1;
+
+
+  // 分享相关的数据
+  bool isSelectAble = false;
+  List<NoteItem> selectItems = [];
+  late Function(List<NoteItem>) onSelectComplete;
+  List<String> selectIds = [];
 
   search() async {
     if(searchController.text.isEmpty) {
@@ -26,6 +36,37 @@ class SearchController extends BaseGetController{
     notes.value = [];
     page = 1;
     initList();
+  }
+
+  initSelectItems(List<NoteItem> item) {
+    selectItems = item;
+    item.forEach((e) => selectIds.add(e.dataid));
+  }
+
+  onToggleChecked(NoteItem item) {
+    final dataid = item.dataid;
+    if(selectIds.contains(dataid)) {
+      selectIds.remove(dataid);
+
+      final List<NoteItem> tempSelectItems = [];
+      selectItems.forEach((e) {
+        if(selectIds.contains(e.dataid)) {
+          tempSelectItems.add(e);
+        }
+      });
+      selectItems = tempSelectItems;
+    }else{
+      selectIds.add(dataid);
+      selectItems.add(item);
+    }
+    if(selectIds.isEmpty) {
+      opacity = 0.0;
+    }else{
+      opacity = 1.0;
+    }
+
+
+    update();
   }
 
   // 判定加载更多

@@ -13,6 +13,8 @@ import 'package:app/ui/page/setting_page/setting_page.dart';
 import 'package:app/ui/page/splash_page/splash_binding.dart';
 import 'package:app/ui/page/splash_page/splash_page.dart';
 import 'package:app/ui/page/tag_page/tag_binding.dart';
+import 'package:app/ui/page/webview_page/webview_binding.dart';
+import 'package:app/ui/page/webview_page/webview_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 abstract class Routes {
@@ -36,6 +38,9 @@ abstract class Routes {
 
   // 搜索页
   static const String searchPage = '/search';
+
+  // webview
+  static const String webviewPage = '/webview';
 
 
   // 页面集合
@@ -74,6 +79,11 @@ abstract class Routes {
       name: searchPage,
       page: () => SearchPage(),
       binding: SearchBinding(),
+    ),
+    GetPage(
+      name: webviewPage,
+      page: () => const WebViewPage(),
+      binding: WebViewBinding(),
     ),
   ];
 }

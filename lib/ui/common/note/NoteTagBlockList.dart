@@ -48,7 +48,7 @@ class NoteTagBlockList extends StatelessWidget {
                     itemCount: noteListController.notes.length,
                     itemBuilder: (BuildContext context, int index) => Padding(
                       padding: const EdgeInsets.all(10),
-                      child: NoteBlock(item: noteListController.notes[index], action: ActionModel((dataid) => noteListController.deleted(dataid))),
+                      child: NoteBlock(item: noteListController.notes[index], action: ActionModel(deleted: (dataid) => noteListController.deleted(dataid))),
                     ),
                   ),
                 ),

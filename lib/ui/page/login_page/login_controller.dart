@@ -22,7 +22,7 @@ class LoginController extends BaseGetController {
     EasyLoading.showToast("登录成功");
     SpUtil.putUserInfo(UserEntity.fromJson(jsonDecode(user)));
     GlobalUtil.initUser();
-    Get.toNamed(Routes.appPage);
+    Get.offNamed(Routes.appPage);
   }
 
   void initController() {

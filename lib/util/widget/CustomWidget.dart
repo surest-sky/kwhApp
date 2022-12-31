@@ -63,4 +63,25 @@ class CustomWidget {
     );
   }
 
+  static Widget AppButton({required Widget child, required Function() onTap, double? width, double? height}) {
+    return Ink(
+      width: width,
+      height: height,
+      decoration: const BoxDecoration(
+        color: Colors.blueAccent,
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Colors.blueAccent,
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: child,
+        ),
+      ),
+    );
+  }
 }

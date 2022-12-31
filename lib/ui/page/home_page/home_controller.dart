@@ -45,7 +45,7 @@ class HomeController extends BaseGetController{
       "page_size": pageSize,
     }, success: (List<NoteItem> lists) {
       // 执行渲染逻辑
-      notes.value = [...notes.value, ...lists];
+      notes.value = page == 1 ? lists : [...notes.value, ...lists];
       notes.refresh();
       ToastUtil.dismiss();
 

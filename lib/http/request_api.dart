@@ -27,6 +27,15 @@ class RequestApi{
 
   // 搜索文章
   static const String searchData = 'data/search_data';
+
+  // 我的分享
+  static const String shareData = 'share/get_all_share_info';
+
+  // 更新分享
+  static const String updateShare = 'share/update_share_data';
+
+  // 创建分享
+  static const String createShare = 'share/create_share';
 }
 
 
