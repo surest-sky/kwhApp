@@ -1,6 +1,7 @@
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/res/style.dart';
 import 'package:app/ui/page/setting_page/password_controller.dart';
+import 'package:app/util/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -14,9 +15,7 @@ class PasswordPage extends GetCommonView<PasswordController> {
       appBar: AppBar(
         title: const Text("密码设置"),
       ),
-      body: Container(
-        padding: EdgeInsets.all(10),
-        width: double.infinity,
+      body: AppContainer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

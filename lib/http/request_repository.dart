@@ -6,6 +6,7 @@ import 'package:app/http/request_old.dart';
 import 'package:app/model/Tags_model.dart';
 import 'package:app/model/User.dart';
 import 'package:app/model/note_item.dart';
+import 'package:app/model/search_params_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -129,6 +130,27 @@ class RequestRepository {
         success: (data) {
       if (success != null) {
         success(true);
+      }
+    }, fail: (code, msg) {
+      if (fail != null) {
+        fail(code, msg);
+      }
+    });
+  }
+
+  // 笔记搜索
+  searchData(SearchParams params, {
+    Success<List<NoteItem>>? success,
+    Fail? fail,
+  }) {
+    Request.post<dynamic>(RequestApi.searchData , params.toJson(),
+        success: (data) {
+      if (success != null) {
+        final List<NoteItem> notes = [];
+        (data as List<dynamic>).forEach((element) {
+          notes.add(NoteItem.fromJson(element));
+        });
+        success(notes);
       }
     }, fail: (code, msg) {
       if (fail != null) {

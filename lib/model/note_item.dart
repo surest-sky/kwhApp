@@ -24,7 +24,7 @@ class NoteItem {
     paas = json['paas'] ?? "";
     url = json['url'] ?? "";
     noteType = json['type'] ?? "";
-    tags = json['tags'];
+    tags = json['tags'] ?? [];
     title = json['title'] ?? "";
     fullText = json['full_text'] ?? "";
     remark = json['remark'] ?? "";

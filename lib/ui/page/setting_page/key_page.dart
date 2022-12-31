@@ -1,4 +1,5 @@
 import 'package:app/res/style.dart';
+import 'package:app/util/theme/app_theme.dart';
 import 'package:app/util/widget/i_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -29,46 +30,34 @@ class _KeyPageState extends State<KeyPage> {
           }, icon: const Icon(Icons.refresh))
         ],
       ),
-      body: SizedBox(
-        width: double.infinity,
+      body: AppContainer(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 20),
-            SizedBox(
-              child: ICard.Card(
-                context,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20),
 
-                    const Text(
-                      "请注意，请不要泄露您的key到其他地方，当被泄露后，可以从此位置, 点击右上角进行重置",
-                      style: TextStyle(fontSize: 15, color: Colors.black54),
-                    ),
-                    const SizedBox(height: 10),
+            const Text(
+              "请注意，请不要泄露您的key到其他地方，当被泄露后，可以从此位置, 点击右上角进行重置",
+              style: TextStyle(fontSize: 15, color: Colors.black54),
+            ),
+            const SizedBox(height: 10),
 
-                    Row(
-                      children:  [
-                        Text(
-                          "key: ${user.idkey}",
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-
-                    Row(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: const Text("复制"),
-                        ),
-                      ],
-                    )
-                  ],
+            Row(
+              children:  [
+                Text(
+                  "key: ${user.idkey}",
+                  style: const TextStyle(fontSize: 15),
                 ),
-              ),
+              ],
+            ),
+            const SizedBox(height: 20),
+
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text("复制"),
+                ),
+              ],
             )
           ],
         ),

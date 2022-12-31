@@ -4,6 +4,8 @@ import 'package:app/ui/page/login_page/login_binding.dart';
 import 'package:app/ui/page/login_page/login_page.dart';
 import 'package:app/ui/page/note_page/note_binding.dart';
 import 'package:app/ui/page/note_page/note_page.dart';
+import 'package:app/ui/page/search_page/search_binding.dart';
+import 'package:app/ui/page/search_page/search_page.dart';
 import 'package:app/ui/page/setting_page/password_binding.dart';
 import 'package:app/ui/page/setting_page/password_page.dart';
 import 'package:app/ui/page/setting_page/setting_binding.dart';
@@ -31,6 +33,9 @@ abstract class Routes {
 
   // 内容详情页
   static const String detailPage = '/detail';
+
+  // 搜索页
+  static const String searchPage = '/search';
 
 
   // 页面集合
@@ -64,6 +69,11 @@ abstract class Routes {
       name: splashPage,
       page: () => const SplashPage(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: searchPage,
+      page: () => SearchPage(),
+      binding: SearchBinding(),
     ),
   ];
 }

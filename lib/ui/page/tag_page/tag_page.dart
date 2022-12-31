@@ -160,34 +160,20 @@ class TagPage extends GetCommonView<TagController> {
     }
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.only(top: 20, left: 20),
-              alignment: Alignment.topLeft,
-              height: 70,
-              child: const Text(
-                "我的标签",
-                style: TextStyle(fontSize: 30),
-              ),
-            ),
-            Expanded(
-              child: RefreshIndicator(
-                key: controller.refreshIndicatorKey,
-                onRefresh: () => controller.refreshData(),
-                child: ListView.builder(
-                  itemBuilder: (context, int index) {
-                    if (index == controller.tags.length) {
-                      return buildFav();
-                    }
-                    return buildListItem(controller.tags[index]);
-                  },
-                  itemCount: controller.tags.length + 1,
-                ),
-              ),
-            ),
-          ],
+      appBar: AppBar(
+        title: const Text("我的标签"),
+      ),
+      body: RefreshIndicator(
+        key: controller.refreshIndicatorKey,
+        onRefresh: () => controller.refreshData(),
+        child: ListView.builder(
+          itemBuilder: (context, int index) {
+            if (index == controller.tags.length) {
+              return buildFav();
+            }
+            return buildListItem(controller.tags[index]);
+          },
+          itemCount: controller.tags.length + 1,
         ),
       ),
     );

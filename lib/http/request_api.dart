@@ -24,6 +24,9 @@ class RequestApi{
 
   // 移除文章
   static const String deleteNote = 'data/del_one_data';
+
+  // 搜索文章
+  static const String searchData = 'data/search_data';
 }
 
 
