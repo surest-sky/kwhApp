@@ -8,7 +8,7 @@ class ParamsShareModel {
 
   ParamsShareModel.fromJson(dynamic json) {
     title = json['title'];
-    idList = json['id_list'];
+    idList = json['idList'];
     shareId = json['share_id'] ?? "";
     view = json['view'];
   }

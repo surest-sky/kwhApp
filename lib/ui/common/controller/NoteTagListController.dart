@@ -51,7 +51,7 @@ class NoteTagListController extends BaseGetController {
 
   // 获取标签对应的列表数据
   initTagList() {
-    ToastUtil.showLoading();
+    // ToastUtil.showLoading();
     request.getTagslist({
       "tag": tagName,
       "page": page,

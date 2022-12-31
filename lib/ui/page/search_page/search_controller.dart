@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 class SearchController extends BaseGetController{
   final TextEditingController searchController =
-  TextEditingController(text: "flutter");
+  TextEditingController(text: "                                                                                                                                   ");
   final EasyRefreshController refreshController = EasyRefreshController(
     controlFinishRefresh: true,
     controlFinishLoad: true,

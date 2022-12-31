@@ -50,7 +50,7 @@ class ShareController extends BaseGetController {
       "title": formTitleController.text,
       "idList": idList.join('|'),
       "view": "public",
-      "share__id": shareId,
+      "share_id": shareId,
     });
 
     return params;
@@ -64,6 +64,35 @@ class ShareController extends BaseGetController {
     }
 
     final params = getParams();
+    request.createShare(params, success: (bool _is) {
+      ToastUtil.toast("创建成功");
+      Get.back();
+      onLoadRefresh();
+    });
+  }
+
+  // 删除分享
+  deleteShare(String shareId) {
+    request.deleteShare(shareId, success: (bool _is) {
+      ToastUtil.toast("删除成功");
+      Get.back();
+      onLoadRefresh();
+    });
+  }
+
+  // 创建分享
+  updateShare() {
+    if(formTitleController.text.isEmpty) {
+      ToastUtil.toast("请输入分享名称");
+      return;
+    }
+
+    final params = getParams();
+    request.updateShare(params, success: (bool _is) {
+      ToastUtil.toast("更新成功");
+      Get.back();
+      onLoadRefresh();
+    });
   }
 
   // 判定加载更多
@@ -92,7 +121,6 @@ class ShareController extends BaseGetController {
 
   // 初始化列表数据
   initList() {
-    ToastUtil.showLoading();
     request.getShareData({
       "page": page,
       "page_size": pageSize,

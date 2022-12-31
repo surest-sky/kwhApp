@@ -39,7 +39,7 @@ class HomeController extends BaseGetController{
 
   // 初始化列表数据
   initList() {
-    ToastUtil.showLoading();
+    // ToastUtil.showLoading();
     request.getIndexData({
       "page": page,
       "page_size": pageSize,

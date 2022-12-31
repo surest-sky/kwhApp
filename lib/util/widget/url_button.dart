@@ -1,6 +1,9 @@
 import 'package:app/model/ItemView.dart';
 import 'package:app/model/note_item.dart';
+import 'package:app/model/web_model.dart';
+import 'package:app/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UrlButton extends StatelessWidget {
   final NoteItem item;
@@ -18,8 +21,10 @@ class UrlButton extends StatelessWidget {
           ? null
           : TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, "itemWebViewPage",
-                    arguments: itemView);
+                Get.toNamed(
+                  Routes.webviewPage,
+                  arguments: WebEntity(title: item.title, link: item.url),
+                );
               },
               style: TextButton.styleFrom(
                 minimumSize: Size.zero,

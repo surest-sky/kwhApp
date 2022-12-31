@@ -82,6 +82,9 @@ class _ToolBarState extends State<ToolBar> {
                 ),
               ),
               Container(
+                constraints: const BoxConstraints(
+                  maxWidth: 200,
+                ),
                 alignment: Alignment.center,
                 child: Text(
                   widget.title,

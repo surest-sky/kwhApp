@@ -3,6 +3,7 @@ import 'package:app/model/note_item.dart';
 import 'package:app/model/tag_chunk_note_item.dart';
 import 'package:app/model/tag_simple_model.dart';
 import 'package:app/ui/common/controller/NoteTagListController.dart';
+import 'package:app/ui/common/empty/TagEmpty.dart';
 import 'package:app/ui/common/note/NoteTagBlockList.dart';
 import 'package:app/ui/common/note/NoteDetail.dart';
 import 'package:app/util/widget/well_icon.dart';
@@ -145,6 +146,9 @@ class TagPage extends GetCommonView<TagController> {
     }
 
     Widget buildFav() {
+      if(controller.lists.isEmpty) {
+        return const SizedBox();
+      }
       return Padding(
         padding: const EdgeInsets.only(left: 20),
         child: Column(
@@ -168,12 +172,15 @@ class TagPage extends GetCommonView<TagController> {
         onRefresh: () => controller.refreshData(),
         child: ListView.builder(
           itemBuilder: (context, int index) {
+            if( controller.tags.isEmpty && controller.lists.isEmpty ) {
+              return const TagEmpty();
+            }
             if (index == controller.tags.length) {
               return buildFav();
             }
             return buildListItem(controller.tags[index]);
           },
-          itemCount: controller.tags.length + 1,
+          itemCount: controller.tags.isEmpty && controller.lists.isEmpty ? 1 : controller.tags.length + 1,
         ),
       ),
     );

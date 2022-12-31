@@ -47,16 +47,22 @@ class ShareAdd extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Text(
-                    "创建分享",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                   Text(
+                   controller.shareId.isEmpty ? "创建分享" : "更新分享",
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   CustomWidget.AppButton(
                     child: const Text(
                       "确认",
                       style: TextStyle(color: Colors.white),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      if(controller.shareId.isNotEmpty) {
+                        controller.updateShare();
+                      }else{
+                        controller.createShare();
+                      }
+                    },
                   ),
                 ],
               ),

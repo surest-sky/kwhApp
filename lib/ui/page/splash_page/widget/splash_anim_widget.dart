@@ -29,6 +29,7 @@ class SplashAnimWidget extends GetCommonView<SplashController> {
         }
         Get.find<RequestRepository>().getAccountInfo(controller.user.phone, success: (UserEntity user) {
           SpUtil.updateUserInfo(user);
+          precacheImage(NetworkImage(user.avatar), context);
           Get.offNamed(Routes.appPage);
         });
       },

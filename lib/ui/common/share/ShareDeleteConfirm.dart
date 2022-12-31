@@ -1,7 +1,6 @@
-import 'package:app/http/request_repository.dart';
 import 'package:app/model/action_model.dart';
-import 'package:app/model/note_item.dart';
 import 'package:app/model/share_data_model.dart';
+import 'package:app/ui/page/share_page/share_controller.dart';
 import 'package:app/util/toast_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,11 +13,7 @@ class ShareDeleteConfirm extends StatelessWidget {
   // 删除
   submitDelete(context) {
     ToastUtil.showLoading();
-    Get.find<RequestRepository>().deleteNote(item.shareId, success: (bool _is) {
-      ToastUtil.toast("删除成功");
-      Navigator.of(context).pop();
-      refreshList();
-    });
+    Get.find<ShareController>().deleteShare(item.shareId);
   }
 
   refreshList() {
@@ -41,7 +36,7 @@ class ShareDeleteConfirm extends StatelessWidget {
             ListTile(
               title: const Text('取消'),
               leading: const Icon(Icons.reply),
-              onTap: () => Navigator.of(context).pop(),
+              onTap: () => Get.back(),
             ),
           ],
         ),

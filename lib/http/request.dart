@@ -70,7 +70,7 @@ class Request {
     Fail? fail,
   }) {
     if(dialog) {
-      ToastUtil.showLoading();
+      // ToastUtil.showLoading();
     }
     debugPrint("request url ==============> ${RequestApi.baseurl}$url");
     debugPrint("parameters ==============> $parameters");

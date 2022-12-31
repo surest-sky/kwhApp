@@ -32,22 +32,29 @@ class SearchPage extends GetCommonView<SearchController> {
               controller: controller.searchController,
               onEditingComplete: controller.search,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.only(right: 10, top: 5),
+                contentPadding: controller.isSelectAble
+                    ? const EdgeInsets.only(right: 10, top: 5)
+                    : null,
                 prefixIcon: const Icon(Icons.search),
-                suffixIcon: AnimatedOpacity(
-                  curve: Curves.ease,
-                  opacity: 1.0,
-                  duration: const Duration(milliseconds: 500),
-                  child: CustomWidget.AppButton(
-                    child: const Text(
-                      "确认",
-                      style: TextStyle(color: Colors.white, fontSize: 15),
-                    ),
-                    onTap: () {
-                      controller.onSelectComplete(controller.selectItems);
-                    },
-                  ),
-                ),
+                suffixIcon: controller.isSelectAble
+                    ? AnimatedOpacity(
+                        curve: Curves.ease,
+                        opacity: 1.0,
+                        duration: const Duration(milliseconds: 500),
+                        child: CustomWidget.AppButton(
+                          child: const Text(
+                            "确认",
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          onTap: () {
+                            controller.onSelectComplete(controller.selectItems);
+                          },
+                        ),
+                      )
+                    : IconButton(
+                        onPressed: () => controller.searchController.clear(),
+                        icon: Icon(Icons.close),
+                      ),
                 hintText: 'Search...',
                 border: InputBorder.none,
               ),
@@ -75,15 +82,18 @@ class SearchPage extends GetCommonView<SearchController> {
                         action: ActionModel(
                           deleted: (dataid) => controller.deleted(dataid),
                           isShow: !controller.isSelectAble,
-                          selectWidget: Checkbox(
-                            fillColor:
-                                MaterialStateProperty.all(Colors.blueAccent),
-                            value: controller.selectIds.contains(item.dataid),
-                            onChanged: (bool? isChecked) =>
-                                controller.onToggleChecked(
-                              item,
-                            ),
-                          ),
+                          selectWidget: controller.isSelectAble
+                              ? Checkbox(
+                                  fillColor: MaterialStateProperty.all(
+                                      Colors.blueAccent),
+                                  value: controller.selectIds
+                                      .contains(item.dataid),
+                                  onChanged: (bool? isChecked) =>
+                                      controller.onToggleChecked(
+                                    item,
+                                  ),
+                                )
+                              : null,
                         ),
                       ),
                     );

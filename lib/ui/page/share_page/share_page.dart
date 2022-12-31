@@ -2,6 +2,7 @@ import 'package:app/base/get/get_common_view.dart';
 import 'package:app/model/action_model.dart';
 import 'package:app/model/share_data_model.dart';
 import 'package:app/ui/common/FloatModal.dart';
+import 'package:app/ui/common/empty/ShareEmpty.dart';
 import 'package:app/ui/common/share/ShareAdd.dart';
 import 'package:app/ui/common/share/ShareBlock.dart';
 import 'package:app/ui/page/share_page/share_controller.dart';
@@ -36,16 +37,21 @@ class SharePage extends GetCommonView<ShareController> {
           onRefresh: () async => controller.onLoadRefresh(),
           onLoad: () async => controller.onloadMore(),
           child: ListView.builder(
-            itemCount: controller.shares.length,
-            itemBuilder: (BuildContext context, int index) => Padding(
-              padding: const EdgeInsets.all(10),
-              child: ShareBlock(
-                item: controller.shares[index],
-                action: ActionModel(
-                  deleted: (dataid) => controller.deleted(dataid),
+            itemCount: controller.shares.length + 1,
+            itemBuilder: (BuildContext context, int index) {
+              if(controller.shares.isEmpty) {
+                return const ShareEmpty();
+              }
+              return Padding(
+                padding: const EdgeInsets.all(10),
+                child: ShareBlock(
+                  item: controller.shares[index],
+                  action: ActionModel(
+                    deleted: (dataid) => controller.deleted(dataid),
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
         ),
       ),

@@ -184,17 +184,49 @@ class RequestRepository {
 
   // 笔记搜索
   createShare(ParamsShareModel params, {
-    Success<List<ShareDataModel>>? success,
+    Success<bool>? success,
     Fail? fail,
   }) {
-    Request.post<dynamic>(RequestApi.createShare, params,
+    Request.post<dynamic>(RequestApi.createShare, params.toCreateJson(),
         success: (data) {
       if (success != null) {
-        final List<ShareDataModel> shares = [];
-        (data as List<dynamic>).forEach((element) {
-          shares.add(ShareDataModel.fromJson(element));
-        });
-        success(shares);
+        success(true);
+      }
+    }, fail: (code, msg) {
+      if (fail != null) {
+        fail(code, msg);
+      }
+    });
+  }
+
+  // 分享更新
+  updateShare(ParamsShareModel params, {
+    Success<bool>? success,
+    Fail? fail,
+  }) {
+    Request.post<dynamic>(RequestApi.updateShare, params.toUpdateJson(),
+        success: (data) {
+      if (success != null) {
+        success(true);
+      }
+    }, fail: (code, msg) {
+      if (fail != null) {
+        fail(code, msg);
+      }
+    });
+  }
+
+  // 分享更新
+  deleteShare(String shareId, {
+    Success<bool>? success,
+    Fail? fail,
+  }) {
+    Request.post<dynamic>(RequestApi.deleteShare, {
+      "share_id": shareId
+    },
+        success: (data) {
+      if (success != null) {
+        success(true);
       }
     }, fail: (code, msg) {
       if (fail != null) {

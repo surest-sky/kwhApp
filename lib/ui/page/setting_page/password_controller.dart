@@ -19,6 +19,8 @@ class PasswordController extends BaseGetController {
       EasyLoading.dismiss();
 
       int total = 10;
+      isGetVerify = false;
+      update();
       TimeUtil.setInterval((periodicTime) {
         verifyCodeText = "请稍后重试 ${total}s";
         isGetVerify = false;

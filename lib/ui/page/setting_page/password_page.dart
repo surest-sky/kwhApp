@@ -2,6 +2,7 @@ import 'package:app/base/get/get_common_view.dart';
 import 'package:app/res/style.dart';
 import 'package:app/ui/page/setting_page/password_controller.dart';
 import 'package:app/util/theme/app_theme.dart';
+import 'package:app/util/widget/CustomWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -29,7 +30,7 @@ class PasswordPage extends GetCommonView<PasswordController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("18270952773"),
+                Text(controller.user.phone),
                 ElevatedButton(
                   onPressed:
                       controller.isGetVerify ? controller.getVerifyCode : null,
@@ -45,7 +46,8 @@ class PasswordPage extends GetCommonView<PasswordController> {
               controller: controller.passwordController,
               decoration: InputDecoration(
                 hintText: "请输入密码",
-                contentPadding: const EdgeInsets.only(right: 10),
+                border: const OutlineInputBorder(),
+                contentPadding: const EdgeInsets.only(right: 10, left: 10),
                 suffix: GestureDetector(
                   onTap: controller.toogleShowPassword,
                   child: Icon(
@@ -56,12 +58,14 @@ class PasswordPage extends GetCommonView<PasswordController> {
                 ),
               ),
             ),
+            const SizedBox(height: 10),
             TextField(
               obscureText: controller.showPassword,
               controller: controller.confirmPasswordController,
               decoration: InputDecoration(
-                hintText: "请输入密码",
-                contentPadding: const EdgeInsets.only(right: 10),
+                hintText: "请再次输入密码",
+                border: const OutlineInputBorder(),
+                contentPadding: const EdgeInsets.only(right: 10, left: 10),
                 suffix: GestureDetector(
                   onTap: controller.toogleShowPassword,
                   child: Icon(
@@ -72,10 +76,10 @@ class PasswordPage extends GetCommonView<PasswordController> {
                 ),
               ),
             ),
-            const SizedBox(height: 5),
-            ElevatedButton(
-              onPressed: () => controller.submit(),
-              child: const Text("确认修改"),
+            const SizedBox(height: 10),
+            CustomWidget.AppButton(
+              onTap: () => controller.submit(),
+              child: const Text("确认修改", style: TextStyle(color: Colors.white)),
             )
           ],
         ),
