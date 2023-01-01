@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomWidget {
   static Widget buildSliverAppBar(String text,
@@ -63,25 +64,111 @@ class CustomWidget {
     );
   }
 
-  static Widget AppButton({required Widget child, required Function() onTap, double? width, double? height}) {
+  static Widget AppButton(
+      {required Widget child,
+      required Function() onTap,
+      double? width,
+      double? height,
+      Color? color}) {
     return Ink(
       width: width,
       height: height,
-      decoration: const BoxDecoration(
-        color: Colors.blueAccent,
+      decoration: BoxDecoration(
+        color: color ?? Colors.blueAccent,
         borderRadius: BorderRadius.all(Radius.circular(5)),
       ),
       child: InkWell(
         onTap: onTap,
         child: Container(
-          decoration: const BoxDecoration(
-            color: Colors.blueAccent,
+          decoration: BoxDecoration(
+            color: color ?? Colors.blueAccent,
             borderRadius: BorderRadius.all(Radius.circular(5)),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: child,
+          padding: const EdgeInsets.all(5),
+          child: Center(child: child),
         ),
       ),
+    );
+  }
+
+  static Widget bottomSheetBar({
+    required String centerTitle,
+    required List<Widget> actions,
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        GestureDetector(
+          child: const Text(
+            "取消",
+            style: TextStyle(
+              color: Colors.black54,
+              fontSize: 15,
+            ),
+          ),
+          onTap: () {
+            Get.back();
+          },
+        ),
+        Text(
+          centerTitle,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
+        ),
+        Row(
+          children: actions,
+        ),
+      ],
+    );
+  }
+
+  static Widget iTextField(
+      {Widget? suffix,
+      TextEditingController? controller,
+      String? hintText,
+      int? maxLines,
+      bool autofocus = false,
+      TextInputType? keyboardType}) {
+    return TextField(
+      maxLines: maxLines,
+      autofocus: autofocus,
+      keyboardType: keyboardType,
+      controller: controller,
+      decoration: InputDecoration(
+        hintText: hintText,
+        contentPadding: const EdgeInsets.all(10),
+        suffix: suffix,
+        fillColor: Colors.grey.shade200,
+        filled: true,
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(8), //边角为5
+          ),
+          borderSide: BorderSide(
+            color: Colors.white, //边线颜色为白色
+            width: 0, //边线宽度为2
+          ),
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.white, //边框颜色为白色
+            width: 0, //宽度为5
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(8), //边角为30
+          ),
+        ),
+      ),
+    );
+  }
+
+  static Widget iCheckBox({bool? value, ValueChanged<bool?>? onChanged, MaterialStateProperty<Color?>? fillColor }) {
+    return Checkbox(
+      fillColor: fillColor,
+      value: value,
+      onChanged: onChanged,
     );
   }
 }

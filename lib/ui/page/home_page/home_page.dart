@@ -2,8 +2,11 @@ import 'package:app/base/get/get_common_view.dart';
 import 'package:app/model/action_model.dart';
 import 'package:app/res/style.dart';
 import 'package:app/routes/routes.dart';
+import 'package:app/ui/common/FloatModal.dart';
 import 'package:app/ui/common/empty/HomeEmpty.dart';
 import 'package:app/ui/common/note/NoteBlock.dart';
+import 'package:app/ui/core/editor/editor_controller.dart';
+import 'package:app/ui/core/editor/editor_webview.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +33,13 @@ class HomePage extends GetCommonView<HomeController> {
           ),
           IconButton(
             icon: const Icon(Icons.add),
-            onPressed: () {},
+            onPressed: () {
+              Get.put(EditorController());
+              showFloatingModalBottomSheet(
+                context: context,
+                builder: (context) => const EditorWebview(),
+              );
+            },
           ),
         ],
       ),

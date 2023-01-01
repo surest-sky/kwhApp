@@ -2,12 +2,18 @@ import 'dart:convert';
 
 import 'package:app/model/User.dart';
 import 'package:app/util/save/sp_util.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class GlobalUtil {
+  static String editUrl = "http://192.168.31.219:3000/webview/editor";
   static bool isLogin = false;
   static UserEntity user = UserEntity.fromJson({});
   static String token = user.token;
   static bool isTest = false;
+
+  static WebViewController webviewController =
+  WebViewController.fromPlatformCreationParams(
+      const PlatformWebViewControllerCreationParams());
 
   static void initUser() {
     final _user = SpUtil.getUserInfo();
@@ -25,5 +31,17 @@ class GlobalUtil {
    token = user.token;
    isLogin = true;
    isTest = true;
+  }
+
+  // 初始化编辑器
+  static initEditor() {
+    webviewController
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..enableZoom(false)
+      ..setUserAgent("kwh-app")
+      ..setNavigationDelegate(
+        NavigationDelegate(),
+      )
+      ..loadRequest(Uri.parse(editUrl));
   }
 }

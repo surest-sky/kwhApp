@@ -37,7 +37,7 @@ class SharePage extends GetCommonView<ShareController> {
           onRefresh: () async => controller.onLoadRefresh(),
           onLoad: () async => controller.onloadMore(),
           child: ListView.builder(
-            itemCount: controller.shares.length + 1,
+            itemCount: controller.shares.isEmpty ? 1 : controller.shares.length ,
             itemBuilder: (BuildContext context, int index) {
               if(controller.shares.isEmpty) {
                 return const ShareEmpty();
