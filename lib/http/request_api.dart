@@ -39,6 +39,9 @@ class RequestApi{
 
   // 删除分享
   static const String deleteShare = 'share/delete_share';
+
+  // 创建笔记
+  static const String createNote = 'data/submit_req';
 }
 
 

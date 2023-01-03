@@ -1,5 +1,8 @@
 import 'package:app/model/action_model.dart';
 import 'package:app/model/note_item.dart';
+import 'package:app/routes/routes.dart';
+import 'package:app/ui/core/editor/editor_controller.dart';
+import 'package:app/ui/core/editor/editor_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +13,8 @@ class NoteAction extends StatelessWidget {
   late NoteItem item;
   late ActionModel action;
 
-  NoteAction({Key? key, required this.item, required this.action}) : super(key: key);
+  NoteAction({Key? key, required this.item, required this.action})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,23 @@ class NoteAction extends StatelessWidget {
             ListTile(
               title: const Text('编辑'),
               leading: Icon(Icons.edit),
-              onTap: () => Navigator.of(context).pop(),
+              onTap: () {
+                // Get.back();
+                // EditorController controller = Get.put(EditorController());
+                // controller.loading = true;
+                // controller.initEditorValue(item);
+                Get.toNamed(Routes.editPage, arguments: item);
+                // showModalBottomSheet(
+                //   context: context,
+                //   builder: (context) => EditorWebview(
+                //     refresh: () {
+                //       if(action.onLoadRefresh != null)   {
+                //         action.onLoadRefresh!();
+                //       }
+                //     },
+                //   ),
+                // );
+              },
             ),
             ListTile(
               title: const Text('移除'),
@@ -32,7 +52,10 @@ class NoteAction extends StatelessWidget {
                 Get.back(),
                 showFloatingModalBottomSheet(
                   context: context,
-                  builder: (context) => NoteDeleteConfirm(item: item, action: action,),
+                  builder: (context) => NoteDeleteConfirm(
+                    item: item,
+                    action: action,
+                  ),
                 ),
               },
             )

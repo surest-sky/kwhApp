@@ -64,15 +64,15 @@ class CustomWidget {
     );
   }
 
-  static Widget AppButton(
-      {required Widget child,
-      required Function() onTap,
-      double? width,
-      double? height,
-      Color? color}) {
+  static Widget AppButton({
+    required Widget child,
+    required Function() onTap,
+    double? width,
+    double? height,
+    Color? color,
+  }) {
     return Ink(
       width: width,
-      height: height,
       decoration: BoxDecoration(
         color: color ?? Colors.blueAccent,
         borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -164,11 +164,27 @@ class CustomWidget {
     );
   }
 
-  static Widget iCheckBox({bool? value, ValueChanged<bool?>? onChanged, MaterialStateProperty<Color?>? fillColor }) {
+  static Widget iCheckBox(
+      {bool? value,
+      ValueChanged<bool?>? onChanged,
+      MaterialStateProperty<Color?>? fillColor}) {
     return Checkbox(
       fillColor: fillColor,
       value: value,
       onChanged: onChanged,
+    );
+  }
+
+  static AppBar iAppBar({required String title, actions}) {
+    return AppBar(
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 18,
+        ),
+      ),
+      actions: actions,
+      toolbarHeight: 50,
     );
   }
 }

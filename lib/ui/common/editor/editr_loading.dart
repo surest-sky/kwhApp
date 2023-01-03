@@ -8,6 +8,7 @@ class EditLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      width: double.infinity,
       child: Center(child: Column(
         children: [
           Expanded(child: Lottie.asset(R.assetsLottiePageLoading)                                                                          ),

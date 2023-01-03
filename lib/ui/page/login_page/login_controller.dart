@@ -16,7 +16,8 @@ class LoginController extends BaseGetController {
   final WebViewController webviewController =
       WebViewController.fromPlatformCreationParams(
           const PlatformWebViewControllerCreationParams());
-  final String url = "https://kwh-h5.surest.cn/auth/login";
+  final String url = "http://192.168.31.219:3000/auth/login";
+  // final String url = "https://kwh-h5.surest.cn/auth/login";
 
   void setLogin(String user) {
     EasyLoading.showToast("登录成功");

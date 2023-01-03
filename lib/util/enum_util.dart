@@ -20,3 +20,8 @@ class EnumUtil {
     return 'text';
   }
 }
+
+enum EditorMode {
+  edit,
+  create
+}

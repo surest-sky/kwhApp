@@ -8,7 +8,7 @@ class GlobalUtil {
   static String editUrl = "http://192.168.31.219:3000/webview/editor";
   static bool isLogin = false;
   static UserEntity user = UserEntity.fromJson({});
-  static String token = user.token;
+  static String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMyNzI0MTgsInN1YiI6IntcInVfaWRcIjogXCJwNWdxVjYxNjcwXCJ9In0.jApHFsFjUWD6MvIAcgHflGLKDRKNq7wnOUdL-RgenH4";
   static bool isTest = false;
 
   static WebViewController webviewController =
@@ -20,6 +20,9 @@ class GlobalUtil {
     if(_user != null) {
       user = _user;
       isLogin = true;
+      token = _user.token;
+      print("_user =>> ${_user.toJson()}");
+      print("_user.token ${_user.token}");
     }else{
       isLogin = false;
     }

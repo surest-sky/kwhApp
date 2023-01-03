@@ -1,9 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 
-/// @class : GetCommonView
-/// @name : jhf
-/// @description :基类,用于绑定Controller
 abstract class GetCommonView<T extends GetxController> extends StatefulWidget {
   const GetCommonView({Key? key}) : super(key: key);
 
@@ -21,9 +18,6 @@ abstract class GetCommonView<T extends GetxController> extends StatefulWidget {
   AutoDisposeState createState() => AutoDisposeState<T>();
 }
 
-/// @class : AutoDisposeState
-/// @name : jhf
-/// @description :基类,可自动装载的状态管理
 class AutoDisposeState<S extends GetxController> extends State<GetCommonView> {
   AutoDisposeState();
 

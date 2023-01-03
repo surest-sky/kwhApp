@@ -1,5 +1,7 @@
 import 'package:app/ui/page/app_page/app_binding.dart';
 import 'package:app/ui/page/app_page/app_page.dart';
+import 'package:app/ui/page/edit_page/edit_binding.dart';
+import 'package:app/ui/page/edit_page/edit_page.dart';
 import 'package:app/ui/page/login_page/login_binding.dart';
 import 'package:app/ui/page/login_page/login_page.dart';
 import 'package:app/ui/page/note_page/note_binding.dart';
@@ -41,6 +43,9 @@ abstract class Routes {
 
   // webview
   static const String webviewPage = '/webview';
+
+  // editPage
+  static const String editPage = '/editor';
 
 
   // 页面集合
@@ -84,6 +89,11 @@ abstract class Routes {
       name: webviewPage,
       page: () => const WebViewPage(),
       binding: WebViewBinding(),
+    ),
+    GetPage(
+      name: editPage,
+      page: () => EditPage(),
+      binding: EditBinding(),
     ),
   ];
 }

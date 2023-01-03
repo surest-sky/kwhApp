@@ -24,11 +24,15 @@ class NoteItem {
     paas = json['paas'] ?? "";
     url = json['url'] ?? "";
     noteType = json['type'] ?? "";
-    tags = json['tags'] ?? [];
+    final List<String> _tags = [];
+    ((json['tags'] ?? []) as List<dynamic>).forEach((element) {
+      _tags.add(element as String);
+    });
+    tags = _tags;
     title = json['title'] ?? "";
     fullText = json['full_text'] ?? "";
     remark = json['remark'] ?? "";
-    updatedAt = json['updated_at'];
+    updatedAt = json['updated_at'] ?? 0;
     errorMsg = json['errorMsg'] ?? "";
   }
 
@@ -42,7 +46,7 @@ class NoteItem {
   late String fullText;
   late int updatedAt;
   late String remark;
-  late List<dynamic> tags;
+  late List<String> tags;
   String? errorMsg;
 
   String get uat {
@@ -72,15 +76,5 @@ class NoteItem {
   String _convertFormatDate(int _date) {
     final _dt = DateTime.fromMillisecondsSinceEpoch(_date * 1000);
     return formatDate(_dt, [yyyy, '-', mm, '-', dd]);
-  }
-
-  List<String> _convertTags(String? tags) {
-    if(tags == null) {
-      return [];
-    }
-    if(tags.isEmpty) {
-      return [];
-    }
-    return tags.split(',');
   }
 }

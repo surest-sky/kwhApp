@@ -82,6 +82,7 @@ class HttpRequest {
         options:
             Options(method: _methodValues[method], headers: _headerToken()),
       );
+      print("_headerToken =>> ${_headerToken()}");
       if (response.statusCode != 200) {
         _onError(403, "服务器异常", fail);
         debugPrint("request ===== $params | $method ${GlobalUtil.token}");

@@ -37,7 +37,9 @@ class HomePage extends GetCommonView<HomeController> {
               Get.put(EditorController());
               showFloatingModalBottomSheet(
                 context: context,
-                builder: (context) => const EditorWebview(),
+                builder: (context) => EditorWebview(
+                  refresh: () => controller.onLoadRefresh(),
+                ),
               );
             },
           ),
@@ -51,17 +53,20 @@ class HomePage extends GetCommonView<HomeController> {
           child: ListView.builder(
             itemCount: controller.notes.isEmpty ? 1 : controller.notes.length,
             itemBuilder: (BuildContext context, int index) {
-              if(controller.notes.isEmpty) {
+              if (controller.notes.isEmpty) {
                 return const HomeEmpty();
               }
-             return Padding(
-               padding: const EdgeInsets.all(10),
-               child: NoteBlock(
-                 item: controller.notes[index],
-                 action: ActionModel(deleted: (dataid) => controller.deleted(dataid)),
-               ),
-             );
-            }
+              return Padding(
+                padding: const EdgeInsets.all(10),
+                child: NoteBlock(
+                  item: controller.notes[index],
+                  action: ActionModel(
+                    deleted: (dataid) => controller.deleted(dataid),
+                    onLoadRefresh: () => controller.onLoadRefresh(),
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),

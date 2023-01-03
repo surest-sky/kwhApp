@@ -84,11 +84,11 @@ class Request {
     ///
     HttpRequest.request(method, url,parameters, isJson: isJson , success: (result) {
       if(dialog){
-        ToastUtil.dismiss();
+        // ToastUtil.dismiss();
       }
       if(success != null){
         var resultModel = Result.fromJson(result);
-        debugPrint("request success =>$resultModel");
+        debugPrint("request success => $url $resultModel");
         if (resultModel.errorCode == 401) {
           Get.offNamed(Routes.loginPage);
           ToastUtil.toast("请登录");
@@ -105,7 +105,7 @@ class Request {
     }, fail: (code, msg) {
       debugPrint("request error =>$msg");
       if(dialog){
-        ToastUtil.dismiss();
+        // ToastUtil.dismiss();
       }
       ToastUtil.toast(msg);
       if (fail != null) {

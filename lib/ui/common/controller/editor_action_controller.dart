@@ -1,10 +1,12 @@
 import 'package:app/base/get/getx_controller_inject.dart';
 import 'package:app/model/Tags_model.dart';
+import 'package:app/ui/core/editor/editor_controller.dart';
 import 'package:app/util/toast_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EditorActionController extends BaseGetController {
+  EditorController get editorController => Get.find();
   final TextEditingController tagController = TextEditingController(text: "");
   final TextEditingController remarkController = TextEditingController(text: "");
   final TextEditingController titleController = TextEditingController(text: "");
@@ -20,6 +22,16 @@ class EditorActionController extends BaseGetController {
       }
       tags.refresh();
     });
+  }
+
+  initValues() {
+    print("initValues");
+    remarkController.text = editorController.remark;
+    titleController.text = editorController.title;
+    selectTags.value = editorController.tags;
+
+    print("titleController.text ${titleController.text}");
+    update();
   }
 
   addTag(String value) {
@@ -51,5 +63,6 @@ class EditorActionController extends BaseGetController {
   void onInit() {
     super.onInit();
     initTags();
+    initValues();
   }
 }

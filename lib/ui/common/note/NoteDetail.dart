@@ -5,6 +5,7 @@ import 'package:app/util/widget/url_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class NoteDetail extends StatefulWidget {
   final NoteItem item;
@@ -17,12 +18,24 @@ class NoteDetail extends StatefulWidget {
 
 class _NoteDetailState extends State<NoteDetail> {
   bool verticalGallery = false;
+  final WebViewController webviewController =
+  WebViewController.fromPlatformCreationParams(
+      const PlatformWebViewControllerCreationParams());
+  
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    webviewController.loadHtmlString(widget.item.fullText);
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
         Container(
+          height: 800,
           padding: const EdgeInsets.only(
             top: 20,
             right: 10,
@@ -88,7 +101,7 @@ class _NoteDetailState extends State<NoteDetail> {
                 const SizedBox(height: 5),
               const Divider(),
               const SizedBox(height: 5),
-              contentText(widget.item),
+              Expanded(child: contentText(widget.item)),
             ],
           ),
         )
@@ -115,10 +128,7 @@ class _NoteDetailState extends State<NoteDetail> {
       );
     }
 
-    return SelectableText(
-      widget.item.fullText,
-      textAlign: TextAlign.left,
-    );
+    return WebViewWidget(controller: webviewController);
   }
 
   Widget urlWidget() {

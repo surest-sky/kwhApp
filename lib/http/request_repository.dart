@@ -4,6 +4,7 @@ import 'package:app/http/request.dart';
 import 'package:app/http/request_api.dart';
 import 'package:app/http/request_old.dart';
 import 'package:app/model/Params_share_model.dart';
+import 'package:app/model/params_create_noe_model.dart';
 import 'package:app/model/share_data_model.dart';
 import 'package:app/model/Tags_model.dart';
 import 'package:app/model/User.dart';
@@ -233,6 +234,24 @@ class RequestRepository {
         fail(code, msg);
       }
     });
+  }
+
+
+  // 笔记搜索
+  createNote(ParamsCreateNoteModel params, {
+    Success<bool>? success,
+    Fail? fail,
+  }) {
+    Request.post<dynamic>(RequestApi.createNote, params.toJson(),
+        success: (data) {
+          if (success != null) {
+            success(true);
+          }
+        }, fail: (code, msg) {
+          if (fail != null) {
+            fail(code, msg);
+          }
+        });
   }
 
   getAllTagsOld({
