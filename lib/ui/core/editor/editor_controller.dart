@@ -1,3 +1,4 @@
+import 'package:app/base/app/global.dart';
 import 'package:app/base/get/getx_controller_inject.dart';
 import 'package:app/model/note_item.dart';
 import 'package:app/model/params_create_noe_model.dart';
@@ -105,7 +106,7 @@ class EditorController extends BaseGetController {
           },
         ),
       )
-      ..loadRequest(Uri.parse(editUrl));
+      ..loadRequest(Uri.parse(GlobalUtil.editUrl));
   }
 
   @override

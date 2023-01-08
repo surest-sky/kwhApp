@@ -5,7 +5,8 @@ import 'package:app/util/save/sp_util.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class GlobalUtil {
-  static String editUrl = "http://192.168.31.219:3000/webview/editor";
+  static String rootUrl = "https://kwh-h5.surest.cn";
+  static String editUrl = "$rootUrl/webview/editor";
   static bool isLogin = false;
   static UserEntity user = UserEntity.fromJson({});
   static String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMyNzI0MTgsInN1YiI6IntcInVfaWRcIjogXCJwNWdxVjYxNjcwXCJ9In0.jApHFsFjUWD6MvIAcgHflGLKDRKNq7wnOUdL-RgenH4";
@@ -19,7 +20,7 @@ class GlobalUtil {
     final _user = SpUtil.getUserInfo();
     if(_user != null) {
       user = _user;
-      isLogin = true;
+      isLogin = true;///
       token = _user.token;
       print("_user =>> ${_user.toJson()}");
       print("_user.token ${_user.token}");
@@ -45,6 +46,6 @@ class GlobalUtil {
       ..setNavigationDelegate(
         NavigationDelegate(),
       )
-      ..loadRequest(Uri.parse(editUrl));
+      ..loadRequest(Uri.parse("https://kwh-h5.surest.cn/webview/editor"));
   }
 }

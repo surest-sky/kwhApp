@@ -1,16 +1,15 @@
+import 'package:app/base/app/global.dart';
 import 'package:app/model/action_model.dart';
 import 'package:app/model/note_item.dart';
+import 'package:app/model/web_model.dart';
 import 'package:app/routes/routes.dart';
-import 'package:app/ui/common/note/NoteDetail.dart';
 import 'package:app/util/enum_util.dart';
 import 'package:app/util/widget/url_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../FloatModal.dart';
 import 'NoteAction.dart';
-import 'NoteDeleteConfirm.dart';
 
 class NoteBlock extends StatelessWidget {
   final NoteItem item;
@@ -45,7 +44,11 @@ class NoteBlock extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Get.toNamed(Routes.detailPage, arguments: item.dataid);
+        // Get.toNamed(Routes.detailPage, arguments: item.dataid);
+        Get.toNamed(
+          Routes.webviewPage,
+          arguments: WebEntity(title: item.title, link: '${GlobalUtil.rootUrl}/dotdot/${GlobalUtil.user.uId}/${item.dataid}'),
+        );
       },
       child: Container(
         height: 150,

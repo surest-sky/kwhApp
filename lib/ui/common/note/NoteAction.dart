@@ -28,7 +28,7 @@ class NoteAction extends StatelessWidget {
               title: const Text('编辑'),
               leading: Icon(Icons.edit),
               onTap: () {
-                // Get.back();
+                Get.back();
                 // EditorController controller = Get.put(EditorController());
                 // controller.loading = true;
                 // controller.initEditorValue(item);
