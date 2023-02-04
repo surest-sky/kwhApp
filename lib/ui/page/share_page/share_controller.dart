@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:app/util/toast_util.dart';
 
+import '../../../base/app/global.dart';
+
 class ShareController extends BaseGetController {
   final EasyRefreshController refreshController = EasyRefreshController(
     controlFinishRefresh: true,
@@ -25,7 +27,7 @@ class ShareController extends BaseGetController {
   final List<NoteItem> formItems = [];
 
   String getShareUrl(ShareDataModel item) {
-    return "https://kwh-h5.surest.cn/share/${item.shareId}";
+    return "${GlobalUtil.rootUrl}/share/${item.shareId}";
   }
 
   resetForm() {

@@ -11,6 +11,7 @@ class R {
   static const String assetsLottieRefreshError = 'assets/lottie/refresh_error.json';
   static const String assetsLottieCollect = 'assets/lottie/collect_success.json';
   static const String assetsLottieShareEmptyCollect = 'assets/lottie/share_empty.json';
+  static const String assetsLottieSearchEmptyCollect = 'assets/lottie/tag_empty.json';
   static const String assetsLottieTagEmpty = 'assets/lottie/tag_empty.json';
 
 }

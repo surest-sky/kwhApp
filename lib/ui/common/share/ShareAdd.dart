@@ -39,6 +39,7 @@ class ShareAdd extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
+                    onTap: () => Get.back(),
                     child: const Text(
                       "取消",
                       style: TextStyle(

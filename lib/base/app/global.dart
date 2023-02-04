@@ -5,7 +5,7 @@ import 'package:app/util/save/sp_util.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class GlobalUtil {
-  static String rootUrl = "https://kwh-h5.surest.cn";
+  static String rootUrl = "https://kwh-h5.surest.cn/#";
   static String editUrl = "$rootUrl/webview/editor";
   static bool isLogin = false;
   static UserEntity user = UserEntity.fromJson({});
@@ -46,6 +46,6 @@ class GlobalUtil {
       ..setNavigationDelegate(
         NavigationDelegate(),
       )
-      ..loadRequest(Uri.parse("https://kwh-h5.surest.cn/webview/editor"));
+      ..loadRequest(Uri.parse("${GlobalUtil.rootUrl}/webview/editor"));
   }
 }

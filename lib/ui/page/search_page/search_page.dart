@@ -1,6 +1,7 @@
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/model/action_model.dart';
 import 'package:app/model/note_item.dart';
+import 'package:app/ui/common/empty/SearchEmpty.dart';
 import 'package:app/ui/common/note/NoteBlock.dart';
 import 'package:app/util/widget/CustomWidget.dart';
 import 'package:easy_refresh/easy_refresh.dart';
@@ -66,7 +67,8 @@ class SearchPage extends GetCommonView<SearchController> {
       body: Obx(
         () => controller.notes.isEmpty
             ? Center(
-                child: Text(controller.isLoading ? "loading..." : "暂无搜索结果"))
+                child: controller.isLoading ? const Text("loading...") : const SearchEmpty(),
+              )
             : EasyRefresh(
                 controller: controller.refreshController,
                 onRefresh: () async => controller.search(),

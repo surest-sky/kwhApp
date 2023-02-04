@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class EditorController extends BaseGetController {
-  // final editUrl = "https://kwh-h5.surest.cn/webview/editor";
-  final editUrl = "http://192.168.31.219:3000/webview/editor";
+  final editUrl = "${GlobalUtil.rootUrl}/webview/editor";
+  // final editUrl = "http://192.168.31.219:3000/webview/editor";
   final WebViewController webviewController =
   WebViewController.fromPlatformCreationParams(
       const PlatformWebViewControllerCreationParams());
