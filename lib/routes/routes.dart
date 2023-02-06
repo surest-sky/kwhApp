@@ -14,10 +14,13 @@ import 'package:app/ui/page/setting_page/setting_binding.dart';
 import 'package:app/ui/page/setting_page/setting_page.dart';
 import 'package:app/ui/page/splash_page/splash_binding.dart';
 import 'package:app/ui/page/splash_page/splash_page.dart';
+import 'package:app/ui/page/sync_page/sync_page.dart';
 import 'package:app/ui/page/tag_page/tag_binding.dart';
 import 'package:app/ui/page/webview_page/webview_binding.dart';
 import 'package:app/ui/page/webview_page/webview_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+
+import '../ui/page/sync_page/sync_binding.dart';
 
 abstract class Routes {
   // 主页
@@ -47,6 +50,7 @@ abstract class Routes {
   // editPage
   static const String editPage = '/editor';
 
+  static const String syncPage = '/sync';
 
   // 页面集合
   static final routePage = [
@@ -94,6 +98,11 @@ abstract class Routes {
       name: editPage,
       page: () => EditPage(),
       binding: EditBinding(),
+    ),
+    GetPage(
+      name: syncPage,
+      page: () => const SyncPage(),
+      binding: SyncBinding(),
     ),
   ];
 }

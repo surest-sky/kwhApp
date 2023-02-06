@@ -72,10 +72,13 @@ class ProfilePage extends GetCommonView<ProfileController> {
                       Get.toNamed(Routes.settingPage);
                     },
                   ),
-                  const ListTile(
-                    leading: Icon(Icons.sync),
-                    title: Text("同步设置"),
-                    trailing: Icon(
+                  ListTile(
+                    leading: const Icon(Icons.sync),
+                    title: const Text("同步设置"),
+                    onTap: () {
+                      Get.toNamed(Routes.syncPage);
+                    },
+                    trailing: const Icon(
                       Icons.navigate_next,
                     ),
                   ),

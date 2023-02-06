@@ -92,7 +92,7 @@ class EditorController extends BaseGetController {
     webviewController
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..enableZoom(false)
-      ..setUserAgent("kwh-app")
+      ..setUserAgent(GlobalUtil.getAppAgent())
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageFinished: (String url) {

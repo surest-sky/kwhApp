@@ -4,6 +4,8 @@ import 'package:app/util/toast_util.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../../base/app/global.dart';
+
 /// @class : WebViewController
 /// @date : 2021/08/24
 /// @name : jhf
@@ -29,7 +31,7 @@ class WebController extends BaseGetController {
     webviewController
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..enableZoom(false)
-      ..setUserAgent("kwh-app")
+      ..setUserAgent(GlobalUtil.getAppAgent())
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (String url) {

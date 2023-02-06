@@ -37,7 +37,7 @@ class LoginController extends BaseGetController {
           setLogin(message.message);
         },
       )
-      ..setUserAgent("kwh-app")
+      ..setUserAgent(GlobalUtil.getAppAgent())
       ..setNavigationDelegate(NavigationDelegate(onPageStarted: (String url) {
         EasyLoading.show();
       }, onPageFinished: (String url) {

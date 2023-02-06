@@ -5,16 +5,23 @@ import 'package:app/util/save/sp_util.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class GlobalUtil {
-  static String rootUrl = "https://kwh-h5.surest.cn/#";
+  // static String rootUrl = "https://kwh-h5.surest.cn/#";
+  static String rootUrl = "http://192.168.31.218:3000/#";
   static String editUrl = "$rootUrl/webview/editor";
+  static String syncUrl = "$rootUrl/app/sync";
   static bool isLogin = false;
   static UserEntity user = UserEntity.fromJson({});
-  static String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzMyNzI0MTgsInN1YiI6IntcInVfaWRcIjogXCJwNWdxVjYxNjcwXCJ9In0.jApHFsFjUWD6MvIAcgHflGLKDRKNq7wnOUdL-RgenH4";
+  static String token = "";
+  static String idKey = "";
   static bool isTest = false;
 
   static WebViewController webviewController =
   WebViewController.fromPlatformCreationParams(
       const PlatformWebViewControllerCreationParams());
+
+  static String getAppAgent () {
+    return "kwh-app;$idKey";
+  }
 
   static void initUser() {
     final _user = SpUtil.getUserInfo();
@@ -22,6 +29,7 @@ class GlobalUtil {
       user = _user;
       isLogin = true;///
       token = _user.token;
+      idKey = _user.idkey;
       print("_user =>> ${_user.toJson()}");
       print("_user.token ${_user.token}");
     }else{
@@ -42,7 +50,7 @@ class GlobalUtil {
     webviewController
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..enableZoom(false)
-      ..setUserAgent("kwh-app")
+      ..setUserAgent(GlobalUtil.getAppAgent())
       ..setNavigationDelegate(
         NavigationDelegate(),
       )
