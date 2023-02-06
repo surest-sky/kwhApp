@@ -13,10 +13,13 @@ class SyncPage extends GetCommonView<SyncController> {
       appBar: AppBar(
         title: const Text('同步设置'),
         actions: [
-          IconButton(onPressed: controller.addSync, icon: const Icon(
-            Icons.add,
-            size: 30,
-          )),
+          IconButton(
+            onPressed: controller.addSync,
+            icon: const Icon(
+              Icons.add,
+              size: 30,
+            ),
+          ),
           const SizedBox(width: 10)
         ],
       ),
@@ -25,8 +28,8 @@ class SyncPage extends GetCommonView<SyncController> {
         child: controller.loading
             ? const NoteLoading()
             : WebViewWidget(
-          controller: controller.webviewController,
-        ),
+                controller: controller.webviewController,
+              ),
       ),
     );
   }

@@ -43,6 +43,7 @@ class SearchPage extends GetCommonView<SearchController> {
                         opacity: 1.0,
                         duration: const Duration(milliseconds: 500),
                         child: CustomWidget.AppButton(
+                          width: 30,
                           child: const Text(
                             "确认",
                             style: TextStyle(color: Colors.white, fontSize: 15),
@@ -50,7 +51,7 @@ class SearchPage extends GetCommonView<SearchController> {
                           onTap: () {
                             controller.onSelectComplete(controller.selectItems);
                           },
-                        ),
+                        )
                       )
                     : IconButton(
                         onPressed: () => controller.searchController.clear(),
@@ -67,7 +68,9 @@ class SearchPage extends GetCommonView<SearchController> {
       body: Obx(
         () => controller.notes.isEmpty
             ? Center(
-                child: controller.isLoading ? const Text("loading...") : const SearchEmpty(),
+                child: controller.isLoading
+                    ? const Text("loading...")
+                    : const SearchEmpty(),
               )
             : EasyRefresh(
                 controller: controller.refreshController,
@@ -87,7 +90,8 @@ class SearchPage extends GetCommonView<SearchController> {
                           selectWidget: controller.isSelectAble
                               ? Checkbox(
                                   fillColor: MaterialStateProperty.all(
-                                      Colors.blueAccent),
+                                    Colors.blueAccent,
+                                  ),
                                   value: controller.selectIds
                                       .contains(item.dataid),
                                   onChanged: (bool? isChecked) =>

@@ -7,13 +7,15 @@ class TagEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      child: Center(child: Column(
-        children: [
-          Expanded(child: Lottie.asset(R.assetsLottieTagEmpty)                                                                          ),
-        ],
-      )),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 300,
+          child: Lottie.asset(R.assetsLottieTagEmpty),
+        ),
+        const Text("请先搜索看看咯"),
+      ],
     );
   }
 }

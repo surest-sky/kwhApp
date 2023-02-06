@@ -7,14 +7,15 @@ class HomeEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      child: Center(child: Column(
-        children: [
-          Expanded(child: Lottie.asset(R.assetsLottieRefreshEmpty)                                                                          ),
-          const Text("暂无数据哦"),
-        ],
-      )),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 300,
+          child: Lottie.asset(R.assetsLottieRefreshEmpty),
+        ),
+        const Text("请先搜索看看咯"),
+      ],
     );
   }
 }

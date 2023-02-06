@@ -7,14 +7,15 @@ class SearchEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      child: Column(
-        children: [
-          Expanded(child: Lottie.asset(R.assetsLottieSearchEmptyCollect)),
-          const Text("请先搜索看看咯"),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 300,
+          child: Lottie.asset(R.assetsLottieSearchEmptyCollect),
+        ),
+        const Text("请先搜索看看咯"),
+      ],
     );
   }
 }
