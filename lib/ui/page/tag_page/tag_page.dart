@@ -1,7 +1,10 @@
+import 'package:app/base/app/global.dart';
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/model/note_item.dart';
 import 'package:app/model/tag_chunk_note_item.dart';
 import 'package:app/model/tag_simple_model.dart';
+import 'package:app/model/web_model.dart';
+import 'package:app/routes/routes.dart';
 import 'package:app/ui/common/controller/NoteTagListController.dart';
 import 'package:app/ui/common/empty/TagEmpty.dart';
 import 'package:app/ui/common/note/NoteTagBlockList.dart';
@@ -9,6 +12,7 @@ import 'package:app/ui/common/note/NoteDetail.dart';
 import 'package:app/util/widget/well_icon.dart';
 import 'package:app/util/widget/well_title.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import 'tag_controller.dart';
@@ -44,13 +48,18 @@ class TagPage extends GetCommonView<TagController> {
     Widget noteItem(NoteItem item) {
       return InkWell(
         onTap: () {
-          showBarModalBottomSheet(
-            expand: true,
-            context: context,
-            backgroundColor: Colors.white,
-            builder: (context) => NoteDetail(
-              item: item,
-            ),
+          // showBarModalBottomSheet(
+          //   expand: true,
+          //   context: context,
+          //   backgroundColor: Colors.white,
+          //   builder: (context) => NoteDetail(
+          //     item: item,
+          //   ),
+          // );
+
+          Get.toNamed(
+            Routes.webviewPage,
+            arguments: WebEntity(title: item.title, link: '${GlobalUtil.rootUrl}/dotdot/${GlobalUtil.user.uId}/${item.dataid}'),
           );
         },
         child: SizedBox(

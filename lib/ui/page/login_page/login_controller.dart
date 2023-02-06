@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../model/User.dart';
+import '../../../res/style.dart';
 import '../../../routes/routes.dart';
 import '../app_page/app_controller.dart';
 
@@ -29,7 +30,7 @@ class LoginController extends BaseGetController {
   void initController() {
     webviewController
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
+      ..setBackgroundColor(Styles.styleBackgroundGray)
       ..enableZoom(false)
       ..addJavaScriptChannel(
         "AppLogin",
