@@ -13,5 +13,5 @@ class R {
   static const String assetsLottieShareEmptyCollect = 'assets/lottie/share_empty.json';
   static const String assetsLottieSearchEmptyCollect = 'assets/lottie/tag_empty.json';
   static const String assetsLottieTagEmpty = 'assets/lottie/tag_empty.json';
-
+  static const String assetsLottieNoteLoading = 'assets/lottie/loading.json';
 }

@@ -6,7 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class GlobalUtil {
   // static String rootUrl = "https://kwh-h5.surest.cn/#";
-  static String rootUrl = "http://192.168.31.218:3000/#";
+  static String rootUrl = "http://192.168.50.101:3000/#";
   static String editUrl = "$rootUrl/webview/editor";
   static String syncUrl = "$rootUrl/app/sync";
   static bool isLogin = false;

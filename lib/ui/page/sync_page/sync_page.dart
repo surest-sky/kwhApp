@@ -1,5 +1,5 @@
 import 'package:app/base/get/get_common_view.dart';
-import 'package:app/ui/common/editor/editr_loading.dart';
+import 'package:app/ui/common/loading/NoteLoading.dart';
 import 'package:app/ui/page/sync_page/sync_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -20,11 +20,14 @@ class SyncPage extends GetCommonView<SyncController> {
           const SizedBox(width: 10)
         ],
       ),
-      body: controller.loading
-          ? const Text("data")
-          : WebViewWidget(
-              controller: controller.webviewController,
-            ),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: controller.loading
+            ? const NoteLoading()
+            : WebViewWidget(
+          controller: controller.webviewController,
+        ),
+      ),
     );
   }
 }
