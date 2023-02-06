@@ -35,7 +35,7 @@ class WebController extends BaseGetController {
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (String url) {
-            ToastUtil.showLoading();
+            // ToastUtil.showLoading();
           },
           onPageFinished: (String url) {
             ToastUtil.dismiss();

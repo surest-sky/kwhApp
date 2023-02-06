@@ -1,3 +1,4 @@
+import 'package:app/ui/page/webview_page/webview_controller.dart';
 import 'package:app/util/toast_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,11 @@ class WebviewAction extends StatelessWidget {
     )) {
       ToastUtil.toast("浏览器打开异常");
     }
+  }
+
+  Future<void> _refreshInBrowser() async {
+    Get.back();
+    Get.find<WebController>().webviewController.reload();
   }
 
   Future<void> _launchInWebViewOrVC() async {
@@ -52,6 +58,13 @@ class WebviewAction extends StatelessWidget {
               onTap: () {
                 Get.back();
                 _launchInBrowser();
+              },
+            ),
+            ListTile(
+              title: const Text('刷新'),
+              leading: const Icon(Icons.refresh),
+              onTap: () {
+                _refreshInBrowser();
               },
             ),
             ListTile(

@@ -25,9 +25,7 @@ class SyncPage extends GetCommonView<SyncController> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
-        child: controller.loading
-            ? const NoteLoading()
-            : WebViewWidget(
+        child: WebViewWidget(
                 controller: controller.webviewController,
               ),
       ),
