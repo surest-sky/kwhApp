@@ -9,6 +9,7 @@ import 'package:app/util/widget/CustomWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../common/note/NoteEditor.dart';
 import 'editor_controller.dart';
 
 class EditorWebview extends GetCommonView<EditorController> {

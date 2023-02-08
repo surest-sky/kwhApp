@@ -82,6 +82,16 @@ class ProfilePage extends GetCommonView<ProfileController> {
                       Icons.navigate_next,
                     ),
                   ),
+                  ListTile(
+                    leading: const Icon(Icons.sync),
+                    title: const Text("Test 页面"),
+                    onTap: () {
+                      Get.toNamed(Routes.testPage);
+                    },
+                    trailing: const Icon(
+                      Icons.telegram,
+                    ),
+                  ),
                 ],
               ),
             )

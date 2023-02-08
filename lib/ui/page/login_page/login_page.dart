@@ -10,17 +10,14 @@ class LoginPage extends GetCommonView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("斑点熊"),
-        backgroundColor: Colors.white,
-      ),
+      // appBar: AppBar(
+      //   title: const Text("DotDot"),
+      // ),
       body: Container(
         color: Colors.white,
-        height: MediaQuery.of(context).size.height,
-        padding: const EdgeInsets.only(top: 1),
+        margin: const EdgeInsets.only(top: 1),
         child: WebViewWidget(controller: controller.webviewController),
-      )
+      ),
     );
   }
 }
