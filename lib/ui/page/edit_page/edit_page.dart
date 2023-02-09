@@ -11,7 +11,7 @@ class EditPage extends GetCommonView<EditController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomWidget.iAppBar(title: "编辑", actions: [
+      appBar: CustomWidget.iAppBar(title: controller.title, actions: [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
           child: CustomWidget.AppButton(

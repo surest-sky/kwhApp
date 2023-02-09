@@ -48,7 +48,7 @@ class SplashAnimWidget extends GetCommonView<SplashController> {
             ),
             Container(
               margin: const EdgeInsets.only(top: 16),
-              child: const Text("DotDot"),
+              child: const Text("斑点熊"),
             ),
           ],
         ),

@@ -11,7 +11,7 @@ class LoginPage extends GetCommonView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
-      //   title: const Text("DotDot"),
+      //   title: const Text("斑点熊"),
       // ),
       body: Container(
         color: Colors.white,

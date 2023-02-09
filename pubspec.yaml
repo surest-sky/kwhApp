@@ -53,6 +53,7 @@ dependencies:
   url_launcher: ^6.1.7
   share_plus: ^6.3.0
   html_editor_enhanced: ^2.5.1
+  receive_sharing_intent: ^1.4.5
 
 dev_dependencies:
   flutter_test:

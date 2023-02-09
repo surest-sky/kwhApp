@@ -2,6 +2,7 @@ import 'package:app/base/app/global.dart';
 import 'package:app/base/get/getx_controller_inject.dart';
 import 'package:app/model/note_item.dart';
 import 'package:app/model/params_create_noe_model.dart';
+import 'package:app/routes/routes.dart';
 import 'package:app/util/time_util.dart';
 import 'package:app/util/toast_util.dart';
 import 'package:get/get.dart';
@@ -47,7 +48,6 @@ class EditorController extends BaseGetController {
     noteItem = item;
     dataid = item.dataid;
     if(loading == false) {
-      print("noteItem.fullText");
       webviewController.runJavaScript("setContent('${noteItem.fullText}')");
     }
   }
@@ -77,6 +77,9 @@ class EditorController extends BaseGetController {
           ToastUtil.toast("创建成功");
           Get.back();
         }, 1500);
+      }else if(noteItem.dataid.isEmpty) {
+        ToastUtil.toast("创建成功");
+        Get.back();
       }else{
         ToastUtil.dismiss();
         ToastUtil.toast("修改成功");
@@ -97,7 +100,7 @@ class EditorController extends BaseGetController {
         NavigationDelegate(
           onPageFinished: (String url) {
             loading = false;
-            if(dataid.isNotEmpty) {
+            if(dataid.isNotEmpty || noteItem.fullText.isNotEmpty) {
               print("noteItem.fullTextnoteItem.fullTextnoteItem.fullTextnoteItem.fullText");
               print(noteItem.fullText);
               webviewController.runJavaScript("setContent(`${noteItem.fullText}`)");
@@ -115,4 +118,5 @@ class EditorController extends BaseGetController {
 
     initEditor();
   }
+
 }

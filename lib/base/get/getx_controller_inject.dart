@@ -1,19 +1,17 @@
 import 'package:app/base/app/global.dart';
 import 'package:app/http/request_repository.dart';
 import 'package:app/model/User.dart';
-import 'package:app/util/save/sp_util.dart';
 import 'package:get/get.dart';
-
-import '../app/g_controller.dart';
 
 /// @class : BaseGetController
 /// @date : 2021/08/26
 /// @name : jhf
 /// @description :基类 Controller
-class BaseGetController extends GetxController{
-   UserEntity get user => GlobalUtil.user;
-   bool get isLogin => GlobalUtil.isLogin;
-   late RequestRepository request;
+class BaseGetController extends GetxController {
+  UserEntity get user => GlobalUtil.user;
+
+  bool get isLogin => GlobalUtil.isLogin;
+  late RequestRepository request;
 
   @override
   void onInit() {
@@ -23,4 +21,3 @@ class BaseGetController extends GetxController{
     request = Get.find<RequestRepository>();
   }
 }
-
