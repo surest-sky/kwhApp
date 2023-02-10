@@ -1,7 +1,5 @@
 import 'package:app/base/get/get_common_view.dart';
-import 'package:app/res/style.dart';
 import 'package:app/ui/common/controller/NoteController.dart';
-import 'package:app/ui/common/note/NoteBlock.dart';
 import 'package:app/ui/common/note/NoteDetail.dart';
 import 'package:app/util/theme/app_theme.dart';
 import 'package:flutter/material.dart';

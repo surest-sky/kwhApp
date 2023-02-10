@@ -61,7 +61,8 @@ class RequestRepository {
     });
   }
 
-  getIndexData(params, {
+  getIndexData(
+    params, {
     Success<List<NoteItem>>? success,
     Fail? fail,
   }) {
@@ -81,15 +82,16 @@ class RequestRepository {
     });
   }
 
-  getTagslist(params, {
+  getTagslist(
+    params, {
     Success<List<NoteItem>>? success,
     Fail? fail,
   }) {
-    Request.post<dynamic>(RequestApi.getTagslist, params,
-        success: (data) {
+    Request.post<dynamic>(RequestApi.getTagslist, params, success: (data) {
       if (success != null) {
-        final List<NoteItem> lists= [];
-        final dataList = (data as Map<String, dynamic>)["data_list"] as List<dynamic>;
+        final List<NoteItem> lists = [];
+        final dataList =
+            (data as Map<String, dynamic>)["data_list"] as List<dynamic>;
         for (var element in dataList) {
           final data = NoteItem.fromJson(element["tag_data"]);
           lists.add(data);
@@ -104,13 +106,13 @@ class RequestRepository {
   }
 
   // 获取笔记详情
-  getDataDetail(String dataId, {
+  getDataDetail(
+    String dataId, {
     Success<NoteItem>? success,
     Fail? fail,
   }) {
     final url = RequestApi.getDetail + dataId;
-    Request.get<dynamic>(url, {},
-        success: (data) {
+    Request.get<dynamic>(url, {}, success: (data) {
       if (success != null) {
         final NoteItem note = NoteItem.fromJson(data);
         success(note);
@@ -123,13 +125,12 @@ class RequestRepository {
   }
 
   // 获取笔记详情
-  deleteNote(String dataId, {
+  deleteNote(
+    String dataId, {
     Success<bool>? success,
     Fail? fail,
   }) {
-    Request.post<dynamic>(RequestApi.deleteNote , {
-      "dataid": dataId
-    },
+    Request.post<dynamic>(RequestApi.deleteNote, {"dataid": dataId},
         success: (data) {
       if (success != null) {
         success(true);
@@ -142,11 +143,12 @@ class RequestRepository {
   }
 
   // 笔记搜索
-  searchData(SearchParams params, {
+  searchData(
+    SearchParams params, {
     Success<List<NoteItem>>? success,
     Fail? fail,
   }) {
-    Request.post<dynamic>(RequestApi.searchData , params.toJson(),
+    Request.post<dynamic>(RequestApi.searchData, params.toJson(),
         success: (data) {
       if (success != null) {
         final List<NoteItem> notes = [];
@@ -163,12 +165,12 @@ class RequestRepository {
   }
 
   // 笔记搜索
-  getShareData(params, {
+  getShareData(
+    params, {
     Success<List<ShareDataModel>>? success,
     Fail? fail,
   }) {
-    Request.post<dynamic>(RequestApi.shareData, params,
-        success: (data) {
+    Request.post<dynamic>(RequestApi.shareData, params, success: (data) {
       if (success != null) {
         final List<ShareDataModel> shares = [];
         (data as List<dynamic>).forEach((element) {
@@ -184,7 +186,8 @@ class RequestRepository {
   }
 
   // 笔记搜索
-  createShare(ParamsShareModel params, {
+  createShare(
+    ParamsShareModel params, {
     Success<bool>? success,
     Fail? fail,
   }) {
@@ -201,7 +204,8 @@ class RequestRepository {
   }
 
   // 分享更新
-  updateShare(ParamsShareModel params, {
+  updateShare(
+    ParamsShareModel params, {
     Success<bool>? success,
     Fail? fail,
   }) {
@@ -218,13 +222,12 @@ class RequestRepository {
   }
 
   // 分享更新
-  deleteShare(String shareId, {
+  deleteShare(
+    String shareId, {
     Success<bool>? success,
     Fail? fail,
   }) {
-    Request.post<dynamic>(RequestApi.deleteShare, {
-      "share_id": shareId
-    },
+    Request.post<dynamic>(RequestApi.deleteShare, {"share_id": shareId},
         success: (data) {
       if (success != null) {
         success(true);
@@ -236,22 +239,72 @@ class RequestRepository {
     });
   }
 
-
   // 笔记搜索
-  createNote(ParamsCreateNoteModel params, {
+  createNote(
+    ParamsCreateNoteModel params, {
     Success<bool>? success,
     Fail? fail,
   }) {
     Request.post<dynamic>(RequestApi.createNote, params.toJson(),
         success: (data) {
-          if (success != null) {
-            success(true);
-          }
-        }, fail: (code, msg) {
-          if (fail != null) {
-            fail(code, msg);
-          }
-        });
+      if (success != null) {
+        success(true);
+      }
+    }, fail: (code, msg) {
+      if (fail != null) {
+        fail(code, msg);
+      }
+    });
+  }
+
+  // 笔记搜索
+  uploadOss(
+    base64Img, {
+    Success<bool>? success,
+    Fail? fail,
+  }) {
+    FormData formData = FormData.fromMap({
+      "base64_str": base64Img,
+    });
+    Request.post<dynamic>(
+      RequestApi.uploadOss,
+      formData,
+      success: (data) {
+        if (success != null) {
+          success(data);
+        }
+      },
+      fail: (code, msg) {
+        if (fail != null) {
+          fail(code, msg);
+        }
+      },
+    );
+  }
+
+  // 笔记搜索
+  uploadOssFile(
+    File file, {
+    Success<bool>? success,
+    Fail? fail,
+  }) {
+    FormData formData = FormData.fromMap({
+      "file": file,
+    });
+    Request.post<dynamic>(
+      RequestApi.uploadOss,
+      formData,
+      success: (data) {
+        if (success != null) {
+          success(data);
+        }
+      },
+      fail: (code, msg) {
+        if (fail != null) {
+          fail(code, msg);
+        }
+      },
+    );
   }
 
   getAllTagsOld({

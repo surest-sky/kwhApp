@@ -22,6 +22,6 @@ class EnumUtil {
 }
 
 enum EditorMode {
-  edit,
-  create
+  fullScreen,
+  quite
 }

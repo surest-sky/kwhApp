@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:app/base/app/global.dart';
-import 'package:app/http/request_api.dart';
-import 'package:dio/dio.dart';
-import 'package:connectivity/connectivity.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:app/http/http_exception.dart';
+import 'package:app/http/request_api.dart';
+import 'package:dio/adapter.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 
 /// 连接超时时间
 const int _connectTimeout = 2000;
@@ -19,6 +19,8 @@ const int _sendTimeout = 2000;
 
 typedef Success<T> = Function(T data);
 typedef Fail = Function(int code, String msg);
+
+HttpClient client = HttpClient();
 
 /// @class : HttpRequest
 /// @name : jhf
@@ -39,9 +41,9 @@ class HttpRequest {
         /// 请求的Content-Type，默认值是"application/json; charset=utf-8".
         /// 如果您想以"application/x-www-form-urlencoded"格式编码请求数据,
         /// 可以设置此选项为 `Headers.formUrlEncodedContentType`,  这样[Dio]就会自动编码请求体.
-        contentType: isJson
-            ? Headers.jsonContentType
-            : Headers.formUrlEncodedContentType,
+        // contentType: isJson
+        //     ? Headers.jsonContentType
+        //     : Headers.formUrlEncodedContentType,
         // 适用于post form表单提交
         // responseType: ResponseType.json,
         validateStatus: (status) {
@@ -55,8 +57,14 @@ class HttpRequest {
       );
       _dio = Dio(options);
     }
-    _dio?.options.contentType =
-        isJson ? Headers.jsonContentType : Headers.formUrlEncodedContentType;
+
+    (_dio?.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (HttpClient client) {
+      client.findProxy = (uri) {
+        return GlobalUtil.isProxy ? "PROXY 192.168.50.101:8899" : 'DIRECT';
+      };
+    };
+
     return _dio!;
   }
 
@@ -76,13 +84,17 @@ class HttpRequest {
       //   return;
       // }
       Dio _dio = createInstance(isJson);
+      print("params =>>>>");
       Response response = await _dio.request(
         path,
         data: params,
-        options:
-            Options(method: _methodValues[method], headers: _headerToken()),
+        options: Options(
+          method: _methodValues[method],
+          headers: _headerToken(),
+        ),
       );
-      print("_headerToken =>> ${_headerToken()}");
+      print("response");
+      print(response);
       if (response.statusCode != 200) {
         _onError(403, "服务器异常", fail);
         debugPrint("request ===== $params | $method ${GlobalUtil.token}");
@@ -97,7 +109,6 @@ class HttpRequest {
       _onError(netError.code, netError.msg, fail);
       debugPrint("异常=====>$e");
     }
-
   }
 }
 
@@ -125,7 +136,7 @@ void _onError(int code, String msg, Fail? fail) {
 
 ///解析json数据
 ///[data] 数据
-Map<String, dynamic> parseData(String data) {
+Map<String, dynamic> parseData(String data) {π
   return json.decode(data) as Map<String, dynamic>;
 }
 
@@ -135,7 +146,7 @@ enum Method { GET, POST, DELETE, PUT, PATCH, HEAD }
 ///请求类型值
 const _methodValues = {
   Method.GET: "get",
-  Method.POST: "post",
+  Method.POST: "post",˚π
   Method.DELETE: "delete",
   Method.PUT: "put",
   Method.PATCH: "patch",

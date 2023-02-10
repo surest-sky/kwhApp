@@ -7,6 +7,7 @@ import 'package:app/ui/common/empty/HomeEmpty.dart';
 import 'package:app/ui/common/note/NoteBlock.dart';
 import 'package:app/ui/core/editor/editor_controller.dart';
 import 'package:app/ui/core/editor/editor_webview.dart';
+import 'package:app/ui/page/home_page/home_action.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,12 +35,9 @@ class HomePage extends GetCommonView<HomeController> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              Get.put(EditorController());
               showFloatingModalBottomSheet(
                 context: context,
-                builder: (context) => EditorWebview(
-                  refresh: () => controller.onLoadRefresh(),
-                ),
+                builder: (context) => HomeAction(),
               );
             },
           ),

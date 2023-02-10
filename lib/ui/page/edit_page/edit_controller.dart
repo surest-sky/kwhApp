@@ -12,9 +12,9 @@ class EditController extends BaseGetController {
   void onInit() {
     super.onInit();
 
-    noteItem = Get.arguments as NoteItem;
-    print("noteItem333");
-    print(noteItem.fullText);
-    editorController.initEditorValue(noteItem);
+    if(Get.arguments != null) {
+      noteItem = Get.arguments as NoteItem;
+      editorController.initEditorValue(noteItem);
+    }
   }
 }

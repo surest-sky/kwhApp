@@ -74,14 +74,15 @@ class Request {
     }
     debugPrint("request url ==============> ${RequestApi.baseurl}$url");
     debugPrint("parameters ==============> $parameters");
-    ///校验参数中是否携带URL
-    parameters.forEach((key, value) {
-      if (url.contains(key)) {
-        url = url.replaceAll(':$key', value.toString());
-      }
-    });
-    ///开启请求
-    ///
+    // if(isJson) {
+    //   ///校验参数中是否携带URL
+    //   parameters.forEach((key, value) {
+    //     if (url.contains(key)) {
+    //       url = url.replaceAll(':$key', value.toString());
+    //     }
+    //   });
+    // }
+
     HttpRequest.request(method, url,parameters, isJson: isJson , success: (result) {
       if(dialog){
         // ToastUtil.dismiss();

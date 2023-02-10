@@ -12,9 +12,9 @@ class TagEmpty extends StatelessWidget {
       children: [
         SizedBox(
           height: 300,
-          child: Lottie.asset(R.assetsLottieTagEmpty),
+          child: true ? SizedBox() : Lottie.asset(R.assetsLottieTagEmpty),
         ),
-        const Text("请先搜索看看咯"),
+        const Text("请先添加看看咯"),
       ],
     );
   }

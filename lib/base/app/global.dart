@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app/model/User.dart';
 import 'package:app/util/save/sp_util.dart';
+import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class GlobalUtil {
@@ -13,7 +14,9 @@ class GlobalUtil {
   static UserEntity user = UserEntity.fromJson({});
   static String token = "";
   static String idKey = "";
+  static bool isProxy = true;
   static bool isTest = false;
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   static WebViewController webviewController =
   WebViewController.fromPlatformCreationParams(

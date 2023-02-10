@@ -124,13 +124,15 @@ class CustomWidget {
     );
   }
 
-  static Widget iTextField(
-      {Widget? suffix,
-      TextEditingController? controller,
-      String? hintText,
-      int? maxLines,
-      bool autofocus = false,
-      TextInputType? keyboardType}) {
+  static Widget iTextField({
+    Widget? suffix,
+    TextEditingController? controller,
+    String? hintText,
+    int? maxLines,
+    bool autofocus = false,
+    TextInputType? keyboardType,
+    Color? fillColor,
+  }) {
     return TextField(
       maxLines: maxLines,
       autofocus: autofocus,
@@ -140,7 +142,7 @@ class CustomWidget {
         hintText: hintText,
         contentPadding: const EdgeInsets.all(10),
         suffix: suffix,
-        fillColor: Colors.grey.shade200,
+        fillColor: fillColor ?? Colors.grey.shade200,
         filled: true,
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(

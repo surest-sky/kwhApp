@@ -42,6 +42,9 @@ class RequestApi{
 
   // 创建笔记
   static const String createNote = 'data/submit_req';
+
+  // 上传到 OSS
+  static const String uploadOss = '/upload_file_to_oss';
 }
 
 

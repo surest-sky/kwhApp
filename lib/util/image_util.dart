@@ -16,4 +16,15 @@ class ImageUtil {
     }
     return "";
   }
+
+  static Future<File?> imageSelectFile() async {
+    String imagePath = "";
+    final ImagePicker _picker = ImagePicker();
+    final XFile? tempImage =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (tempImage != null) {
+      imagePath = tempImage.path;
+      return File(imagePath);
+    }
+  }
 }

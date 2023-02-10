@@ -21,7 +21,7 @@ class EditPage extends GetCommonView<EditController> {
           ),
         ),
       ]),
-      body: EditorWebview(mode: EditorMode.edit),
+      body: EditorWebview(mode: EditorMode.fullScreen),
     );
   }
 }

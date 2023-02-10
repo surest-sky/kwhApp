@@ -7,7 +7,9 @@ import 'package:get/get.dart';
 
 class EditorRemarkAction extends StatelessWidget {
   const EditorRemarkAction({Key? key}) : super(key: key);
+
   EditorController get editorController => Get.find();
+
   EditorActionController get controller => Get.put(EditorActionController());
 
   @override
@@ -29,7 +31,7 @@ class EditorRemarkAction extends StatelessWidget {
                 ),
                 onTap: () {
                   final remark = controller.remarkController.text;
-                  if(remark.isEmpty) {
+                  if (remark.isEmpty) {
                     ToastUtil.toast("请输入备注内容");
                     return;
                   }
@@ -39,14 +41,18 @@ class EditorRemarkAction extends StatelessWidget {
                 },
               ),
             ]),
-            const SizedBox(height: 10,),
-            Expanded(child: CustomWidget.iTextField(
-              controller: controller.remarkController,
-              maxLines: 13,
-              hintText: "请输入备注内容",
-              autofocus: true,
-              keyboardType: TextInputType.multiline,
-            ),),
+            const SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: CustomWidget.iTextField(
+                controller: controller.remarkController,
+                maxLines: 13,
+                hintText: "请输入备注内容",
+                autofocus: true,
+                keyboardType: TextInputType.multiline,
+              ),
+            ),
           ],
         ),
       ),
