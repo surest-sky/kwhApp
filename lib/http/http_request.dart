@@ -146,7 +146,7 @@ enum Method { GET, POST, DELETE, PUT, PATCH, HEAD }
 ///请求类型值
 const _methodValues = {
   Method.GET: "get",
-  Method.POST: "post",˚π
+  Method.POST: "post",
   Method.DELETE: "delete",
   Method.PUT: "put",
   Method.PATCH: "patch",
