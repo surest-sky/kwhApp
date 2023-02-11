@@ -58,12 +58,12 @@ class HttpRequest {
       _dio = Dio(options);
     }
 
-    (_dio?.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (HttpClient client) {
-      client.findProxy = (uri) {
-        return GlobalUtil.isProxy ? "PROXY 192.168.50.101:8899" : 'DIRECT';
-      };
-    };
+    // (_dio?.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    //     (HttpClient client) {
+    //   client.findProxy = (uri) {
+    //     return GlobalUtil.isProxy ? "PROXY 192.168.50.101:8899" : 'DIRECT';
+    //   };
+    // };
 
     return _dio!;
   }
@@ -136,7 +136,7 @@ void _onError(int code, String msg, Fail? fail) {
 
 ///解析json数据
 ///[data] 数据
-Map<String, dynamic> parseData(String data) {π
+Map<String, dynamic> parseData(String data) {
   return json.decode(data) as Map<String, dynamic>;
 }
 
