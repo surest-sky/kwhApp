@@ -245,11 +245,15 @@ class EditorWebview extends GetCommonView<EditorController> {
 
   // 底部的操作条
   Widget _bottomOperateAction(context) {
-    if (controller.isOpenKeyboard) {
-      return const SizedBox();
-    }
+    // if (controller.isOpenKeyboard) {
+    //   return const SizedBox();
+    // }
     // 监听
-    return Column(
+    return ExpansionTile(
+      backgroundColor: Colors.white,
+      collapsedBackgroundColor: Colors.white,
+      leading: const Icon(Icons.more_horiz),
+      title: const Text("更多"),
       children: [
         const SizedBox(height: 10),
         buildOperateItems(context),
