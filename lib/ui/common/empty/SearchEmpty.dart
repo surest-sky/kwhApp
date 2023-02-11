@@ -12,7 +12,7 @@ class SearchEmpty extends StatelessWidget {
       children: [
         SizedBox(
           height: 300,
-          child: true ? SizedBox() : Lottie.asset(R.assetsLottieSearchEmptyCollect),
+          child: Lottie.asset(R.assetsLottieSearchEmptyCollect),
         ),
         const Text("请先搜索看看咯"),
       ],

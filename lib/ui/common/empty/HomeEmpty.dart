@@ -12,7 +12,7 @@ class HomeEmpty extends StatelessWidget {
       children: [
         SizedBox(
           height: 300,
-          child: true ? SizedBox() : Lottie.asset(R.assetsLottieRefreshEmpty),
+          child: Lottie.asset(R.assetsLottieRefreshEmpty),
         ),
         const Text("请先添加看看咯"),
       ],

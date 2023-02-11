@@ -59,7 +59,10 @@ class TagPage extends GetCommonView<TagController> {
 
           Get.toNamed(
             Routes.webviewPage,
-            arguments: WebEntity(title: item.title, link: '${GlobalUtil.rootUrl}/dotdot/${GlobalUtil.user.uId}/${item.dataid}'),
+            arguments: WebEntity(
+                title: item.title,
+                link:
+                    '${GlobalUtil.rootUrl}/dotdot/${GlobalUtil.user.uId}/${item.dataid}'),
           );
         },
         child: SizedBox(
@@ -143,19 +146,19 @@ class TagPage extends GetCommonView<TagController> {
 
     Widget buildTitle(String title) {
       return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(color: Colors.black45, fontSize: 18),
-            ),
-            const SizedBox(height: 10),
-          ],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(color: Colors.black45, fontSize: 18),
+          ),
+          const SizedBox(height: 10),
+        ],
       );
     }
 
     Widget buildFav() {
-      if(controller.lists.isEmpty) {
+      if (controller.lists.isEmpty) {
         return const SizedBox();
       }
       return Padding(
@@ -181,15 +184,23 @@ class TagPage extends GetCommonView<TagController> {
         onRefresh: () => controller.refreshData(),
         child: ListView.builder(
           itemBuilder: (context, int index) {
-            if( controller.tags.isEmpty && controller.lists.isEmpty ) {
+            if (controller.tags.isEmpty && controller.lists.isEmpty) {
               return const TagEmpty();
             }
-            if (index == controller.tags.length) {
+            if (controller.tags.isEmpty && index == 0) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: buildTitle("标签暂无数据"),
+              );
+            }
+            if (index == controller.tags.length + 1) {
               return buildFav();
             }
             return buildListItem(controller.tags[index]);
           },
-          itemCount: controller.tags.isEmpty && controller.lists.isEmpty ? 1 : controller.tags.length + 1,
+          itemCount: controller.tags.isEmpty && controller.lists.isEmpty
+              ? 1
+              : controller.tags.length + 2,
         ),
       ),
     );

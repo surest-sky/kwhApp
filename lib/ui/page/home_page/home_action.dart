@@ -53,6 +53,7 @@ class HomeAction extends StatelessWidget with ImageAction{
               title: const Text('添加长文'),
               leading: const Icon(Icons.add_box),
               onTap: () {
+                Get.back();
                 Get.toNamed(Routes.editPage);
               },
             ),

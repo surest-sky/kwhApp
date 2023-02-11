@@ -19,6 +19,9 @@ class EditorController extends BaseGetController with WidgetsBindingObserver {
     android: AndroidInAppWebViewOptions(
       useHybridComposition: true,
     ),
+    crossPlatform: InAppWebViewOptions(
+      supportZoom: false,
+    ),
   );
 
   bool loading = true;
@@ -64,7 +67,7 @@ class EditorController extends BaseGetController with WidgetsBindingObserver {
   // 确定提交
   submit({Function()? refreshList}) async {
     var content =
-        (await webViewController.evaluateJavascript(source: "setContent('3333')"))
+        (await webViewController.evaluateJavascript(source: "getContent()"))
             .toString();
     content = content.substring(1);
     content = content.substring(0, content.length - 1);

@@ -1,6 +1,8 @@
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/res/colors.dart';
 import 'package:app/res/r.dart';
+import 'package:app/ui/common/FloatModal.dart';
+import 'package:app/ui/page/webview_page/webview_action.dart';
 import 'package:app/ui/page/webview_page/webview_controller.dart';
 import 'package:app/util/widget/_toolbar.dart';
 import 'package:flutter/material.dart';
@@ -26,37 +28,34 @@ class WebViewPage extends GetCommonView<WebController> {
           return true;
         },
         child: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              controller.detail.title,
+              maxLines: 1,
+              softWrap: true,
+              style: const TextStyle(
+                fontSize: 20,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            backgroundColor: Colors.white,
+            toolbarHeight: 50,
+            elevation: 2,
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    showFloatingModalBottomSheet(
+                      context: context,
+                      builder: (context) =>
+                          WebviewAction(url: controller.detail.link),
+                    );
+                  },
+                  icon: const Icon(Icons.more_horiz)),
+            ],
+          ),
           backgroundColor: Colors.white,
           body: Column(
             children: [
-              Stack(
-                children: [
-                  ToolBar(
-                    link: controller.detail.link,
-                    backColor: ColorStyle.color_474747,
-                    backOnTap: () {
-                      Get.back();
-                    },
-                    title: controller.detail.title,
-                  ),
-                  Positioned(
-                    right: 20,
-                    bottom: 11,
-                    width: 24,
-                    height: 24,
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                        splashColor: ColorStyle.color_E2E3E8_66,
-                        onTap: () {},
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               Expanded(
                 child: Stack(
                   children: [

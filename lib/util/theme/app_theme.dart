@@ -35,6 +35,7 @@ AppBarTheme get appBarTheme => AppBarTheme(
         color: Colors.black,
         fontSize: 30,
       ),
+      centerTitle: false,
       elevation: 0,
       iconTheme: const IconThemeData(
         color: Colors.black,

@@ -12,7 +12,7 @@ class ShareEmpty extends StatelessWidget {
       children: [
         SizedBox(
           height: 300,
-          child: true ? SizedBox() : Lottie.asset(R.assetsLottieShareEmptyCollect),
+          child: Lottie.asset(R.assetsLottieShareEmptyCollect),
         ),
         const Text("请先添加看看咯"),
       ],
