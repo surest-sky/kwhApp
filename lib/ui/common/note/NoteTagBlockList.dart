@@ -4,8 +4,8 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../note/NoteBlock.dart';
 import '../controller/NoteTagListController.dart';
+import '../note/NoteBlock.dart';
 
 class NoteTagBlockList extends StatelessWidget {
   NoteTagListController get noteListController => Get.find();

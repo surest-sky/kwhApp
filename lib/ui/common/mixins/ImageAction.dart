@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:app/http/request_repository.dart';
 import 'package:app/util/toast_util.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -46,8 +45,6 @@ mixin ImageAction {
     ToastUtil.showLoading();
     final controller = Get.find<RequestRepository>();
     final map = await controller.uploadOssFile(imgFile);
-    print("上传成功");
-    print(map);
     if (map.code != 200) {
       ToastUtil.toast("服务器响应超时");
       return "";

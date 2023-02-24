@@ -1,4 +1,3 @@
-import 'package:app/base/app/global.dart';
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/ui/common/FloatModal.dart';
 import 'package:app/ui/common/editor/editor_remark_action.dart';
@@ -8,7 +7,6 @@ import 'package:app/util/enum_util.dart';
 import 'package:app/util/widget/CustomWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'editor_controller.dart';
 
@@ -154,10 +152,6 @@ class EditorWebview extends GetCommonView<EditorController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey.shade200,
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-      ),
       constraints: getConstraints(),
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -165,13 +159,7 @@ class EditorWebview extends GetCommonView<EditorController> {
         children: [
           _topOperateAction(),
           Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              child: _editorWebviw(),
-            ),
+            child: _editorWebview(),
           ),
           _bottomOperateAction(context),
         ],
@@ -179,30 +167,13 @@ class EditorWebview extends GetCommonView<EditorController> {
     );
   }
 
-  Widget _editorWebviw() {
-    // if (mode == EditorMode.quite) {
-    //   return CustomWidget.iTextField(
-    //     fillColor: Colors.white,
-    //     controller: controller.inputController,
-    //     maxLines: 13,
-    //     hintText: "请输入...",
-    //     autofocus: true,
-    //     keyboardType: TextInputType.multiline,
-    //   );
-    // }
-
-    return InAppWebView(
-      key: controller.webViewKey,
-      initialUrlRequest: URLRequest(
-        url: Uri.parse(GlobalUtil.editUrl),
-      ),
-      // contextMenu: contextMenu,
-      initialOptions: controller.options,
-      onWebViewCreated: (InAppWebViewController _controller) {
-        controller.webViewController = _controller;
-        controller.loading = false;
-        controller.initEditorValue(controller.noteItem);
-      },
+  Widget _editorWebview() {
+    return CustomWidget.iTextField(
+      controller: controller.inputController,
+      maxLines: 30,
+      hintText: "请输入笔记或者链接...",
+      autofocus: true,
+      keyboardType: TextInputType.multiline,
     );
   }
 
@@ -238,7 +209,7 @@ class EditorWebview extends GetCommonView<EditorController> {
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
       ],
     );
   }
@@ -249,16 +220,6 @@ class EditorWebview extends GetCommonView<EditorController> {
     //   return const SizedBox();
     // }
     // 监听
-    return ExpansionTile(
-      backgroundColor: Colors.white,
-      collapsedBackgroundColor: Colors.white,
-      leading: const Icon(Icons.more_horiz),
-      title: const Text("更多"),
-      children: [
-        const SizedBox(height: 10),
-        buildOperateItems(context),
-        const SizedBox(height: 10),
-      ],
-    );
+    return buildOperateItems(context);
   }
 }

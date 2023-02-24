@@ -1,13 +1,10 @@
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/res/colors.dart';
-import 'package:app/res/r.dart';
 import 'package:app/ui/common/FloatModal.dart';
 import 'package:app/ui/page/webview_page/webview_action.dart';
 import 'package:app/ui/page/webview_page/webview_controller.dart';
-import 'package:app/util/widget/_toolbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// @class : WebViewPage

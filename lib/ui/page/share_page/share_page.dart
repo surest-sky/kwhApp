@@ -1,6 +1,5 @@
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/model/action_model.dart';
-import 'package:app/model/share_data_model.dart';
 import 'package:app/ui/common/FloatModal.dart';
 import 'package:app/ui/common/empty/ShareEmpty.dart';
 import 'package:app/ui/common/share/ShareAdd.dart';

@@ -1,4 +1,3 @@
-import 'package:app/model/tag_simple_model.dart';
 import 'package:app/ui/common/controller/editor_action_controller.dart';
 import 'package:app/ui/core/editor/editor_controller.dart';
 import 'package:app/util/widget/CustomWidget.dart';

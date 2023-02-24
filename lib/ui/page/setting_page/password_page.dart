@@ -4,7 +4,6 @@ import 'package:app/ui/page/setting_page/password_controller.dart';
 import 'package:app/util/theme/app_theme.dart';
 import 'package:app/util/widget/CustomWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PasswordPage extends GetCommonView<PasswordController> {
   const PasswordPage({Key? key}) : super(key: key);

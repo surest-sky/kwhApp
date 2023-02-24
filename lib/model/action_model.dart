@@ -1,4 +1,3 @@
-import 'package:app/model/share_data_model.dart';
 import 'package:flutter/material.dart';
 
 import 'note_item.dart';

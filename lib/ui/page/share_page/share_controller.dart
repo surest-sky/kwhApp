@@ -4,10 +4,10 @@ import 'package:app/model/note_item.dart';
 import 'package:app/model/share_data_model.dart';
 import 'package:app/model/web_model.dart';
 import 'package:app/routes/routes.dart';
+import 'package:app/util/toast_util.dart';
+import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:easy_refresh/easy_refresh.dart';
-import 'package:app/util/toast_util.dart';
 
 import '../../../base/app/global.dart';
 

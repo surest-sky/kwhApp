@@ -3,16 +3,8 @@ PODS:
     - Flutter
     - Reachability
   - Flutter (1.0.0)
-  - flutter_inappwebview (0.0.1):
-    - Flutter
-    - flutter_inappwebview/Core (= 0.0.1)
-    - OrderedSet (~> 5.0)
-  - flutter_inappwebview/Core (0.0.1):
-    - Flutter
-    - OrderedSet (~> 5.0)
   - image_picker_ios (0.0.1):
     - Flutter
-  - OrderedSet (5.0.0)
   - path_provider_ios (0.0.1):
     - Flutter
   - Reachability (3.2)
@@ -30,7 +22,6 @@ PODS:
 DEPENDENCIES:
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - Flutter (from `Flutter`)
-  - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - receive_sharing_intent (from `.symlinks/plugins/receive_sharing_intent/ios`)
@@ -41,7 +32,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - OrderedSet
     - Reachability
 
 EXTERNAL SOURCES:
@@ -49,8 +39,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/connectivity/ios"
   Flutter:
     :path: Flutter
-  flutter_inappwebview:
-    :path: ".symlinks/plugins/flutter_inappwebview/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   path_provider_ios:
@@ -69,9 +57,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
-  OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   receive_sharing_intent: c0d87310754e74c0f9542947e7cbdf3a0335a3b1

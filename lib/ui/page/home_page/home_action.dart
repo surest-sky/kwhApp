@@ -16,6 +16,9 @@ class HomeAction extends StatelessWidget with ImageAction{
 
   addSelectImg() async {
     final _file = await ImageUtil.imageSelectFile();
+    if(_file == null) {
+      return;
+    }
     await uploadImageFile(_file);
     Get.back();
   }

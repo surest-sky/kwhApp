@@ -4,16 +4,14 @@ import 'package:app/http/request.dart';
 import 'package:app/http/request_api.dart';
 import 'package:app/http/request_old.dart';
 import 'package:app/model/Params_share_model.dart';
-import 'package:app/model/params_create_noe_model.dart';
-import 'package:app/model/share_data_model.dart';
 import 'package:app/model/Tags_model.dart';
 import 'package:app/model/User.dart';
 import 'package:app/model/note_item.dart';
+import 'package:app/model/params_create_noe_model.dart';
 import 'package:app/model/search_params_model.dart';
+import 'package:app/model/share_data_model.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
-import '../base/app/global.dart';
 import 'http_request.dart';
 
 typedef SuccessOver<T> = Function(T data, bool over);

@@ -1,4 +1,4 @@
-import 'dart:convert';
+
 
 class SearchParams {
   SearchParams({required this.keyword, required this.highlight ,required this.page, required this.pageSize});

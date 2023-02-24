@@ -1,5 +1,4 @@
 import 'package:app/base/app/global.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ToastUtil {

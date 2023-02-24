@@ -52,7 +52,6 @@ dependencies:
   url_launcher: ^6.1.7
   share_plus: ^6.3.0
   receive_sharing_intent: ^1.4.5
-  flutter_inappwebview: ^5.7.2+3
 
 dev_dependencies:
   flutter_test:

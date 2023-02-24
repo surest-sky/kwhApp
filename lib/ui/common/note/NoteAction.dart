@@ -1,8 +1,6 @@
 import 'package:app/model/action_model.dart';
 import 'package:app/model/note_item.dart';
 import 'package:app/routes/routes.dart';
-import 'package:app/ui/core/editor/editor_controller.dart';
-import 'package:app/ui/core/editor/editor_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

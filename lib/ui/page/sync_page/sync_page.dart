@@ -11,13 +11,22 @@ class SyncPage extends GetCommonView<SyncController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('同步设置'),
+        title: const Text(
+          "同步设置",
+          maxLines: 1,
+          softWrap: true,
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        toolbarHeight: 50,
         actions: [
           IconButton(
             onPressed: controller.addSync,
             icon: const Icon(
               Icons.add,
-              size: 30,
+              size: 20,
             ),
           ),
           const SizedBox(width: 10)

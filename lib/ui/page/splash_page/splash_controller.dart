@@ -1,6 +1,4 @@
 import 'package:app/base/get/getx_controller_inject.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
 
 

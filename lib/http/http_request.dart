@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:app/base/app/global.dart';
 import 'package:app/http/http_exception.dart';
 import 'package:app/http/request_api.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 

@@ -1,11 +1,9 @@
 import 'package:app/base/get/get_common_view.dart';
-import 'package:app/model/User.dart';
-import 'package:app/res/r.dart';
 import 'package:app/res/style.dart';
 import 'package:app/routes/routes.dart';
-import 'package:app/ui/page/app_page/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'profile_controller.dart';
 
 class ProfilePage extends GetCommonView<ProfileController> {
@@ -82,16 +80,16 @@ class ProfilePage extends GetCommonView<ProfileController> {
                       Icons.navigate_next,
                     ),
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.sync),
-                    title: const Text("Test 页面"),
-                    onTap: () {
-                      Get.toNamed(Routes.testPage);
-                    },
-                    trailing: const Icon(
-                      Icons.telegram,
-                    ),
-                  ),
+                  // ListTile(
+                  //   leading: const Icon(Icons.sync),
+                  //   title: const Text("Test 页面"),
+                  //   onTap: () {
+                  //     Get.toNamed(Routes.testPage);
+                  //   },
+                  //   trailing: const Icon(
+                  //     Icons.telegram,
+                  //   ),
+                  // ),
                 ],
               ),
             )

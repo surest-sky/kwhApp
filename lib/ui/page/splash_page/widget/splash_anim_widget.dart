@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/http/request_repository.dart';
 import 'package:app/res/r.dart';
 import 'package:app/routes/routes.dart';
-import 'package:app/ui/page/app_page/app_controller.dart';
 import 'package:app/ui/page/splash_page/splash_controller.dart';
 import 'package:app/util/save/sp_util.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,5 +1,4 @@
 import 'package:app/base/get/get_common_view.dart';
-import 'package:app/res/r.dart';
 import 'package:app/res/style.dart';
 import 'package:app/routes/routes.dart';
 import 'package:app/ui/page/setting_page/key_page.dart';
@@ -64,15 +63,15 @@ class SettingPage extends GetCommonView<SettingController> {
                         ),
                         onTap: () {},
                       ),
-                      ListTile(
-                        title: const Text("修改密码"),
-                        trailing: const Icon(
-                          Icons.navigate_next,
-                        ),
-                        onTap: () {
-                          Get.toNamed(Routes.passwordPage);
-                        },
-                      ),
+                      // ListTile(
+                      //   title: const Text("修改密码"),
+                      //   trailing: const Icon(
+                      //     Icons.navigate_next,
+                      //   ),
+                      //   onTap: () {
+                      //     Get.toNamed(Routes.passwordPage);
+                      //   },
+                      // ),
                     ],
                   ),
                 ),

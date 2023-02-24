@@ -1,4 +1,3 @@
-import 'package:app/res/r.dart';
 import 'package:app/ui/page/splash_page/widget/splash_anim_widget.dart';
 import 'package:app/util/screen_util.dart';
 import 'package:flutter/material.dart';

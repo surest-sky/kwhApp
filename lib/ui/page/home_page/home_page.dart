@@ -1,12 +1,9 @@
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/model/action_model.dart';
-import 'package:app/res/style.dart';
 import 'package:app/routes/routes.dart';
 import 'package:app/ui/common/FloatModal.dart';
 import 'package:app/ui/common/empty/HomeEmpty.dart';
 import 'package:app/ui/common/note/NoteBlock.dart';
-import 'package:app/ui/core/editor/editor_controller.dart';
-import 'package:app/ui/core/editor/editor_webview.dart';
 import 'package:app/ui/page/home_page/home_action.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +42,16 @@ class HomePage extends GetCommonView<HomeController> {
       ),
       body: Obx(
         () => EasyRefresh(
+          header: const ClassicHeader(
+            dragText: '下拉刷新',
+            armedText: '释放刷新',
+            readyText: '刷新中',
+            processingText: '刷新中',
+            processedText: '刷新完成',
+            noMoreText: '没有更多了',
+            failedText: '网络异常',
+            messageText: '上一次更新时间 %T',
+          ),
           controller: controller.refreshController,
           onRefresh: () async => controller.onLoadRefresh(),
           onLoad: () async => controller.onloadMore(),

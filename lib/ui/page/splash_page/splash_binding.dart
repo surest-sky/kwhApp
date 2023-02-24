@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-import '../app_page/app_controller.dart';
 import 'splash_controller.dart';
 
 /// @class : SplashBinding

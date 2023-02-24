@@ -25,17 +25,6 @@ class WebviewAction extends StatelessWidget {
     Get.find<WebController>().webviewController.reload();
   }
 
-  Future<void> _launchInWebViewOrVC() async {
-    if (!await launchUrl(
-      browserUrl,
-      mode: LaunchMode.inAppWebView,
-      webViewConfiguration: const WebViewConfiguration(
-          headers: <String, String>{'my_header_key': 'my_header_value'}),
-    )) {
-      ToastUtil.toast("浏览器打开异常");
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Material(

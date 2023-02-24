@@ -5,10 +5,9 @@ import 'package:app/model/tag_chunk_note_item.dart';
 import 'package:app/model/tag_simple_model.dart';
 import 'package:app/model/web_model.dart';
 import 'package:app/routes/routes.dart';
-import 'package:app/ui/common/controller/NoteTagListController.dart';
 import 'package:app/ui/common/empty/TagEmpty.dart';
+import 'package:easy_refresh/easy_refresh.dart';
 import 'package:app/ui/common/note/NoteTagBlockList.dart';
-import 'package:app/ui/common/note/NoteDetail.dart';
 import 'package:app/util/widget/well_icon.dart';
 import 'package:app/util/widget/well_title.dart';
 import 'package:flutter/material.dart';
@@ -179,28 +178,50 @@ class TagPage extends GetCommonView<TagController> {
       appBar: AppBar(
         title: const Text("我的标签"),
       ),
-      body: RefreshIndicator(
-        key: controller.refreshIndicatorKey,
-        onRefresh: () => controller.refreshData(),
+      body: EasyRefresh(
+        header: const ClassicHeader(
+          dragText: '下拉刷新',
+          armedText: '释放刷新',
+          readyText: '刷新中',
+          processingText: '刷新中',
+          processedText: '刷新完成',
+          noMoreText: '没有更多了',
+          failedText: '网络异常',
+          messageText: '上一次更新时间 %T',
+        ),
+        footer: const ClassicFooter(
+          dragText: '上拉加载更多',
+          armedText: '释放加载',
+          readyText: '加载中',
+          processingText: '加载中',
+          processedText: '加载完成',
+          noMoreText: '没有更多了',
+          failedText: '网络异常',
+          messageText: '上一次更新时间 %T',
+        ),
+        controller: controller.refreshController,
+        onRefresh: () async => controller.refreshData(),
+        onLoad: () async => controller.onloadMore(),
         child: ListView.builder(
           itemBuilder: (context, int index) {
-            if (controller.tags.isEmpty && controller.lists.isEmpty) {
+            if(controller.tags.isEmpty && controller.lists.isEmpty) {
               return const TagEmpty();
             }
-            if (controller.tags.isEmpty && index == 0) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: buildTitle("标签暂无数据"),
-              );
+
+            if(index == controller.tags.length) {
+              if(controller.lists.isEmpty) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: buildTitle("标签暂无数据"),
+                );
+              }else{
+                return buildFav();
+              }
             }
-            if (index == controller.tags.length + 1) {
-              return buildFav();
-            }
+
             return buildListItem(controller.tags[index]);
           },
-          itemCount: controller.tags.isEmpty && controller.lists.isEmpty
-              ? 1
-              : controller.tags.length + 2,
+          itemCount: controller.tags.length + 1,
         ),
       ),
     );

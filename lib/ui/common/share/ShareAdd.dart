@@ -1,8 +1,6 @@
-import 'package:app/model/action_model.dart';
 import 'package:app/model/note_item.dart';
 import 'package:app/model/share_data_model.dart';
 import 'package:app/res/style.dart';
-import 'package:app/routes/routes.dart';
 import 'package:app/ui/common/note/NoteTitle.dart';
 import 'package:app/ui/page/search_page/search_controller.dart';
 import 'package:app/ui/page/search_page/search_page.dart';
@@ -11,9 +9,6 @@ import 'package:app/util/widget/CustomWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-
-import '../FloatModal.dart';
-import 'ShareDeleteConfirm.dart';
 
 class ShareAdd extends StatelessWidget {
   late ShareDataModel? item;

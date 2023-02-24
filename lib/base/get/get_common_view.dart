@@ -1,5 +1,5 @@
-import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 abstract class GetCommonView<T extends GetxController> extends StatefulWidget {
   const GetCommonView({Key? key}) : super(key: key);
