@@ -46,10 +46,13 @@ class HomeAction extends StatelessWidget with ImageAction{
       return;
     }
 
-    final ossUrl =  await uploadImageFile(file);
+    ToastUtil.showLoading(message: "上传中...");
+    final ossUrl = await ImageUtil.uploadImageFile(file);
     if(ossUrl.isEmpty) {
       return;
     }
+    final controller = Get.put(EditorController());
+    controller.submitOssFile(ossUrl);
   }
 
   @override

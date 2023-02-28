@@ -1,13 +1,12 @@
 import 'package:app/base/get/get_common_view.dart';
 import 'package:app/res/style.dart';
 import 'package:app/routes/routes.dart';
-import 'package:app/ui/page/setting_page/key_page.dart';
-import 'package:app/util/image_util.dart';
 import 'package:app/util/save/sp_util.dart';
 import 'package:app/util/widget/i_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'key_page.dart';
 import 'setting_controller.dart';
 
 class SettingPage extends GetCommonView<SettingController> {
@@ -40,7 +39,7 @@ class SettingPage extends GetCommonView<SettingController> {
                             CircleAvatar(
                               radius: 20,
                               backgroundImage:
-                              NetworkImage(controller.user.avatar),
+                              NetworkImage(controller.userAvatar),
                             ),
                             const SizedBox(
                               width: 10,
@@ -51,9 +50,7 @@ class SettingPage extends GetCommonView<SettingController> {
                         trailing: const Icon(
                           Icons.navigate_next,
                         ),
-                        onTap: () async {
-                          final base64 = await ImageUtil.imageSelect();
-                        },
+                        onTap: () => controller.updateAvatar(),
                       ),
                       ListTile(
                         title: const Text("手机号码"),
@@ -88,7 +85,7 @@ class SettingPage extends GetCommonView<SettingController> {
                           Icons.navigate_next,
                         ),
                         onTap: () {
-                          Get.to(const KeyPage());
+                          Get.to(KeyPage());
                         },
                       )
                     ],

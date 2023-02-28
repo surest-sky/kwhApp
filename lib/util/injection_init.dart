@@ -12,7 +12,6 @@ class Injection {
     Get.lazyPut(() => GController());
     Get.lazyPut(() => RequestRepository());
     GlobalUtil.initUser();
-    GlobalUtil.initEditor();
   }
 
   static Future<void> testingInit() async {

@@ -38,7 +38,7 @@ class AutoDisposeState<S extends GetxController> extends State<GetCommonView> {
 
   @override
   void dispose() {
-    Get.delete<S>();
+    // Get.delete<S>();
     super.dispose();
   }
 }

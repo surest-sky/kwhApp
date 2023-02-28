@@ -104,6 +104,7 @@ class Request {
         }
       }
     }, fail: (code, msg) {
+      ToastUtil.dismiss();
       debugPrint("request error =>$msg");
       if(dialog){
         ToastUtil.dismiss();

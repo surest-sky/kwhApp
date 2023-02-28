@@ -48,6 +48,9 @@ class RequestApi{
 
   // 获取 OSS Token
   static const String getOssToken = '/get_oss_sts_token';
+
+  // 更新用户账户
+  static const String updateAccount = '/user/update_account';
 }
 
 

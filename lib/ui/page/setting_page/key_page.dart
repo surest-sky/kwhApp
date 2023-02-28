@@ -1,21 +1,12 @@
 import 'package:app/res/style.dart';
+import 'package:app/ui/page/setting_page/setting_controller.dart';
 import 'package:app/util/theme/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
-import '../../../model/User.dart';
-import '../app_page/app_controller.dart';
+import '../../../base/get/get_common_view.dart';
 
-class KeyPage extends StatefulWidget {
-  const KeyPage({Key? key}) : super(key: key);
-
-  @override
-  State<KeyPage> createState() => _KeyPageState();
-}
-
-class _KeyPageState extends State<KeyPage> {
-  UserEntity get user => Get.find<AppController>().user;
+class KeyPage  extends GetCommonView<SettingController> {
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +16,7 @@ class _KeyPageState extends State<KeyPage> {
         title: const Text("Key设置"),
         actions: [
           IconButton(onPressed: (){
-            EasyLoading.showToast("重置成功");
+            controller.updateIdKey();
           }, icon: const Icon(Icons.refresh))
         ],
       ),
@@ -43,7 +34,7 @@ class _KeyPageState extends State<KeyPage> {
             Row(
               children:  [
                 Text(
-                  "key: ${user.idkey}",
+                  "key: ${controller.idKey}",
                   style: const TextStyle(fontSize: 15),
                 ),
               ],

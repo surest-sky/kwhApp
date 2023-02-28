@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:app/base/app/global.dart';
 import 'package:app/http/request.dart';
 import 'package:app/http/request_api.dart';
 import 'package:app/http/request_core.dart';
@@ -354,6 +355,22 @@ class RequestRepository {
       return ResponseOssModel.fromJson(responseMap.data);
     }
     ToastUtil.toast("获取oss Token失败");
+    return null;
+  }
+
+  // 更新用户资料
+  Future<UserEntity?> updateAccount(Map<String, String> mData ) async {
+    mData['phone'] = GlobalUtil.user.phone;
+    mData['idkey'] = GlobalUtil.user.idkey;
+    final responseMap = await ApiService.post(
+      RequestApi.updateAccount,
+      data: mData,
+      contentType: Headers.jsonContentType,
+    );
+    if (responseMap.code == 200) {
+      return UserEntity.fromJson(responseMap.data);
+    }
+    ToastUtil.toast("操作失败");
     return null;
   }
 }

@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'package:app/model/User.dart';
 import 'package:app/util/save/sp_util.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../../http/request_repository.dart';
 
 class GlobalUtil {
   static String rootUrl = "https://kwh-h5.surest.cn/#";
@@ -33,11 +36,16 @@ class GlobalUtil {
       isLogin = true;///
       token = _user.token;
       idKey = _user.idkey;
-      print("_user =>> ${_user.toJson()}");
-      print("_user.token ${_user.token}");
     }else{
       isLogin = false;
     }
+  }
+
+  // 更新本地用户文件
+  static void updateUser() {
+    Get.find<RequestRepository>().getAccountInfo(GlobalUtil.user.phone, success: (UserEntity user) {
+      SpUtil.updateUserInfo(user);
+    });
   }
 
   static void initMockUser() {

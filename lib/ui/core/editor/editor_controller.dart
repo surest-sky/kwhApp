@@ -47,6 +47,21 @@ class EditorController extends BaseGetController with WidgetsBindingObserver {
     inputController.text = item.fullText;
   }
 
+  submitOssFile(String ossFile) {
+    final params = ParamsCreateNoteModel.fromJson({
+      "content": ossFile,
+      "remark": "",
+      "title": "",
+    });
+
+    ToastUtil.showLoading(message: "上传中...");
+    request.createNote(params, success: (_) {
+      ToastUtil.dismiss();
+      ToastUtil.toast("创建成功");
+      Get.back();
+    });
+  }
+
   // 确定提交
   submit({Function()? refreshList}) async {
     var content = inputController.text;

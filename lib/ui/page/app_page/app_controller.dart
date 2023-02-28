@@ -46,7 +46,6 @@ class AppController extends BaseGetController {
     update();
   }
 
-
   nowAdd(String? value) {
     if(value == null) {
       return;

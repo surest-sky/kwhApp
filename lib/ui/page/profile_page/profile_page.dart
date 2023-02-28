@@ -29,12 +29,12 @@ class ProfilePage extends GetCommonView<ProfileController> {
                     backgroundColor: Color(0xffFDCF09),
                     child: CircleAvatar(
                       radius: 40,
-                      backgroundImage: NetworkImage(controller.user.avatar),
+                      backgroundImage: NetworkImage(controller.app.user.avatar),
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    controller.user.name,
+                    controller.app.user.name,
                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                   ),
                   const SizedBox(height: 10),
@@ -43,7 +43,7 @@ class ProfilePage extends GetCommonView<ProfileController> {
                     children:  [
                       const Icon(Icons.smartphone, size: 12,),
                       Text(
-                        controller.user.phone,
+                        controller.app.user.phone,
                         style: const TextStyle(fontSize: 13),
                       )
                     ],
