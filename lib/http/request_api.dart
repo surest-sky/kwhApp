@@ -45,6 +45,9 @@ class RequestApi{
 
   // 上传到 OSS
   static const String uploadOss = '/upload_file_to_oss';
+
+  // 获取 OSS Token
+  static const String getOssToken = '/get_oss_sts_token';
 }
 
 

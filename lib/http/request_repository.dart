@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:app/http/request.dart';
 import 'package:app/http/request_api.dart';
+import 'package:app/http/request_core.dart';
 import 'package:app/http/request_old.dart';
 import 'package:app/model/Params_share_model.dart';
 import 'package:app/model/Tags_model.dart';
@@ -10,8 +11,10 @@ import 'package:app/model/note_item.dart';
 import 'package:app/model/params_create_noe_model.dart';
 import 'package:app/model/search_params_model.dart';
 import 'package:app/model/share_data_model.dart';
+import 'package:app/util/toast_util.dart';
 import 'package:dio/dio.dart';
 
+import '../model/ResponseOssModel.dart';
 import 'http_request.dart';
 
 typedef SuccessOver<T> = Function(T data, bool over);
@@ -286,6 +289,7 @@ class RequestRepository {
     Success<bool>? success,
     Fail? fail,
   }) {
+    // 先获取 Token
     FormData formData = FormData.fromMap({
       "file": file,
     });
@@ -310,5 +314,46 @@ class RequestRepository {
     Fail? fail,
   }) {
     RequestOld.post(RequestApi.getAllTags, {});
+  }
+
+  // 笔记搜索
+  Future<ResponseOssModel?> getOssToken(
+    String fileName,
+    String contentType,
+  ) async {
+    // 先获取 Token
+    FormData formData = FormData.fromMap({
+      "file_name": fileName,
+      "file_type": contentType,
+    });
+
+    final responseMap =
+        await ApiService.post(RequestApi.getOssToken, data: formData);
+    if (responseMap.code == 200) {
+      return ResponseOssModel.fromJson(responseMap.data);
+    }
+    ToastUtil.toast("获取oss Token失败");
+    return null;
+  }
+
+  // 文件上传
+  Future<ResponseOssModel?> uploadLocalOssFile(
+    File file,
+    String contentType,
+  ) async {
+    FormData formData = FormData.fromMap({
+      "file": file.readAsBytesSync(),
+    });
+
+    final responseMap = await ApiService.post(
+      RequestApi.uploadOss,
+      data: formData,
+      contentType: contentType,
+    );
+    if (responseMap.code == 200) {
+      return ResponseOssModel.fromJson(responseMap.data);
+    }
+    ToastUtil.toast("获取oss Token失败");
+    return null;
   }
 }

@@ -30,14 +30,9 @@ Dio http() {
 class RequestOld {
   static Future<ResponseMap> post(String url, params) async {
     try {
-      print(222);
       var responseData = await http().post(url, data: params);
-      print(4444);
-      print(responseData.toString());
       return _response(responseData.data);
     } on DioError catch (e) {
-      print("error");
-      print(e.response);
       return ResponseMap(403, "Server", {});
     }
   }
@@ -62,8 +57,6 @@ class RequestOld {
       var responseMap = ResponseMap.formJson(json);
       return responseMap;
     } catch (e) {
-      print("error");
-      print(e.toString());
       return ResponseMap(403, "Server", {});
     }
   }

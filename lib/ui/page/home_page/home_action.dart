@@ -3,10 +3,13 @@ import 'package:app/ui/common/FloatModal.dart';
 import 'package:app/ui/common/mixins/ImageAction.dart';
 import 'package:app/ui/core/editor/editor_controller.dart';
 import 'package:app/ui/core/editor/editor_webview.dart';
+import 'package:app/util/enum_util.dart';
 import 'package:app/util/image_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../util/common_util.dart';
+import '../../../util/toast_util.dart';
 import 'home_controller.dart';
 
 
@@ -14,13 +17,39 @@ class HomeAction extends StatelessWidget with ImageAction{
   HomeAction({Key? key}) : super(key: key);
   get controller => Get.find<HomeController>();
 
+  // 验证码文件名称是否合法
+  bool validateFile(filename) {
+    final ext = getFileExtension(filename);
+    if(ext.isEmpty) {
+      ToastUtil.toast("文件异常");
+      return false;
+    }
+
+    final type = EnumUtil.contentTypeMap[ext] ?? ext;
+    if(type.isEmpty) {
+      ToastUtil.toast("暂时不支持上传 ${ext} 后缀名的文件哦");
+      return false;
+    }
+
+    return true;
+  }
+
+  // 添加一个图片或者文件
   addSelectImg() async {
-    final _file = await ImageUtil.imageSelectFile();
-    if(_file == null) {
+    final file = await ImageUtil.imageSelectFile();
+    if(file == null) {
       return;
     }
-    await uploadImageFile(_file);
-    Get.back();
+
+    // 检查文件名称是否合法
+    if(!validateFile(file.path)) {
+      return;
+    }
+
+    final ossUrl =  await uploadImageFile(file);
+    if(ossUrl.isEmpty) {
+      return;
+    }
   }
 
   @override
