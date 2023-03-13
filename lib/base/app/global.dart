@@ -9,7 +9,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../../http/request_repository.dart';
 
 class GlobalUtil {
-  static String rootUrl = "https://kwh-h5.surest.cn/#";
+  // static String rootUrl = "https://kwh-h5.surest.cn/#";
+  static String rootUrl = "https://kwh.dotdotbear.com/#";
   // static String rootUrl = "http://192.168.50.101:3000/#";
   static String editUrl = "$rootUrl/webview/editor";
   static String syncUrl = "$rootUrl/app/sync";

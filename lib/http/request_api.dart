@@ -5,7 +5,8 @@
 class RequestApi{
 
   ///前缀地址
-  static const String baseurl = 'https://kwh-dev.leolan.top/v1/';
+  static const String baseurl = 'https://kwh.leolan.top/v1/';
+  // static const String baseurl = 'https://kwh-dev.leolan.top/v1/';
 
   // 获取用户信息接口
   static const String getAccountInfo = 'user/get_account_info';
