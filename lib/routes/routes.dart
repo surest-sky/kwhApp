@@ -3,6 +3,7 @@ import 'package:app/ui/page/app_page/app_page.dart';
 import 'package:app/ui/page/edit_page/edit_binding.dart';
 import 'package:app/ui/page/edit_page/edit_page.dart';
 import 'package:app/ui/page/login_page/login_binding.dart';
+import 'package:app/ui/page/login_page/login_new_page.dart';
 import 'package:app/ui/page/login_page/login_page.dart';
 import 'package:app/ui/page/note_page/note_binding.dart';
 import 'package:app/ui/page/note_page/note_page.dart';
@@ -65,7 +66,7 @@ abstract class Routes {
     ),
     GetPage(
       name: loginPage,
-      page: () => const LoginPage(),
+      page: () => LoginNewPage(),
       binding: LoginBinding(),
     ),
     GetPage(

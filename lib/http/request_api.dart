@@ -51,6 +51,12 @@ class RequestApi{
 
   // 更新用户账户
   static const String updateAccount = '/user/update_account';
+
+  // 获取验证码
+  static const String getVerifyCode = '/send_verification_code';
+
+  // 登录
+  static const String login = '/login';
 }
 
 

@@ -373,4 +373,40 @@ class RequestRepository {
     ToastUtil.toast("操作失败");
     return null;
   }
+
+  // 获取验证码
+  Future<bool> getVerifyCode(String action, String phone ) async {
+
+    final responseMap = await ApiService.post(
+      RequestApi.getVerifyCode,
+      data: {
+        "action": action,
+        "channel": 'phone',
+        "phone": phone
+      },
+      contentType: Headers.jsonContentType,
+    );
+    if (responseMap.code == 200) {
+      return true;
+    }
+    ToastUtil.toast(responseMap.message);
+    return false;
+  }
+
+  // 登录
+  Future<UserEntity?> submitLogin(String phone, String code ) async {
+    final responseMap = await ApiService.post(
+      RequestApi.login,
+      data: {
+        "phone": phone,
+        "verifyCode": code,
+      },
+      contentType: Headers.jsonContentType,
+    );
+    if (responseMap.code == 200) {
+      return UserEntity.fromJson(responseMap.data);
+    }
+    ToastUtil.toast(responseMap.message);
+    return null;
+  }
 }

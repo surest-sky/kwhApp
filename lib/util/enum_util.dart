@@ -3,6 +3,9 @@ class EnumUtil {
   static String url = "url";
   static String text = "text";
 
+  static String VERIFY_CODE_RESET = 'reset';
+  static String VERIFY_CODE_LOGIN = 'login';
+
   static Map<String, String> contentTypeMap = {
     "jpeg": 'image/jpeg',
     "jpg": 'image/jpeg',
