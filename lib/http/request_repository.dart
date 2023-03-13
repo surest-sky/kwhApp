@@ -399,7 +399,7 @@ class RequestRepository {
       RequestApi.login,
       data: {
         "phone": phone,
-        "verifyCode": code,
+        "sms_code": code,
       },
       contentType: Headers.jsonContentType,
     );

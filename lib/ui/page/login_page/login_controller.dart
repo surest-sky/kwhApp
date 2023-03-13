@@ -2,40 +2,36 @@ import 'dart:convert';
 
 import 'package:app/base/app/global.dart';
 import 'package:app/base/get/getx_controller_inject.dart';
-import 'package:app/http/request_repository.dart';
-import 'package:app/ui/core/editor/editor_controller.dart';
 import 'package:app/util/save/sp_util.dart';
 import 'package:app/util/time_util.dart';
 import 'package:app/util/toast_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../model/User.dart';
-import '../../../res/style.dart';
 import '../../../routes/routes.dart';
 import '../../../util/enum_util.dart';
 
 class LoginController extends BaseGetController {
   final GlobalKey webViewKey = GlobalKey();
   TextEditingController phoneController = TextEditingController(text: "");
-  final WebViewController webviewController =
-      WebViewController.fromPlatformCreationParams(
-          const PlatformWebViewControllerCreationParams());
+  // final WebViewController webviewController =
+  //     WebViewController.fromPlatformCreationParams(
+  //         const PlatformWebViewControllerCreationParams());
 
   // final String url = "http://192.168.31.219:3000/auth/login";
   final String url = "${GlobalUtil.rootUrl}/auth/login";
 
   bool getCodeLoading = false;
-  String verifyCodeText = "";
+  String verifyCodeText = "获取验证码";
   int total = 60;
 
   void setLogin(String user) {
     EasyLoading.showToast("登录成功");
     SpUtil.putUserInfo(UserEntity.fromJson(jsonDecode(user)));
     GlobalUtil.initUser();
-    Get.offNamed(Routes.appPage);
+    Get.offAllNamed(Routes.appPage);
   }
 
   bool isChinaPhoneNumber(String phoneNumber) {
@@ -45,14 +41,15 @@ class LoginController extends BaseGetController {
 
   // 开始登录
   Future login(String code) async {
+    ToastUtil.showLoading(message: "登录中...");
     final user = await request
-        .submitLogin(phoneController.text, code);
+        .submitLogin(phoneController.text, code).whenComplete(() => ToastUtil.dismiss());
     if(user == null) {
       return false;
     }
     SpUtil.putUserInfo(user);
     GlobalUtil.initUser();
-    Get.offNamed(Routes.appPage);
+    Get.offAllNamed(Routes.appPage);
   }
 
   // 设置 发送验证码的 按钮问题
@@ -83,35 +80,36 @@ class LoginController extends BaseGetController {
       return false;
     }
 
+    ToastUtil.showLoading();
     getCodeLoading = true;
     update();
 
     return await request
         .getVerifyCode(EnumUtil.VERIFY_CODE_LOGIN, phoneController.text)
-        .whenComplete(() => {getCodeLoading = true, update()});
+        .whenComplete(() => { ToastUtil.dismiss() });
   }
 
-  void initController() {
-    webviewController
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(Styles.styleBackgroundGray)
-      ..enableZoom(false)
-      ..addJavaScriptChannel(
-        "AppLogin",
-        onMessageReceived: (JavaScriptMessage message) {
-          setLogin(message.message);
-        },
-      )
-      ..setUserAgent(GlobalUtil.getAppAgent())
-      ..setNavigationDelegate(NavigationDelegate(onPageStarted: (String url) {
-        EasyLoading.show();
-      }, onPageFinished: (String url) {
-        EasyLoading.dismiss();
-      }))
-      ..loadRequest(Uri.parse(url));
-
-    update();
-  }
+  // void initController() {
+  //   webviewController
+  //     ..setJavaScriptMode(JavaScriptMode.unrestricted)
+  //     ..setBackgroundColor(Styles.styleBackgroundGray)
+  //     ..enableZoom(false)
+  //     ..addJavaScriptChannel(
+  //       "AppLogin",
+  //       onMessageReceived: (JavaScriptMessage message) {
+  //         setLogin(message.message);
+  //       },
+  //     )
+  //     ..setUserAgent(GlobalUtil.getAppAgent())
+  //     ..setNavigationDelegate(NavigationDelegate(onPageStarted: (String url) {
+  //       EasyLoading.show();
+  //     }, onPageFinished: (String url) {
+  //       EasyLoading.dismiss();
+  //     }))
+  //     ..loadRequest(Uri.parse(url));
+  //
+  //   update();
+  // }
 
   @override
   void onInit() {

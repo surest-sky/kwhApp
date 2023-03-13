@@ -46,6 +46,7 @@ class LoginNewPage extends GetCommonView<LoginController> {
                   const SizedBox(width: 30),
                   Expanded(
                     child: TextField(
+                      controller: controller.phoneController,
                       style: const TextStyle(
                         fontSize: 18,
                       ),
@@ -70,20 +71,36 @@ class LoginNewPage extends GetCommonView<LoginController> {
             const SizedBox(height: 30),
             SizedBox(
               width: double.infinity,
-              height: 40,
+              height: 50,
               child: ElevatedButton(
-                onPressed: () async {
-                  if (await controller.getCode()) {
-                    controller.setVerifyCodeDisable();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const LoginCodePage()),
-                    );
-                  }
-                },
+                onPressed: controller.getCodeLoading
+                    ? null
+                    : () async {
+                        if (await controller.getCode()) {
+                          controller.setVerifyCodeDisable();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginCodePage()),
+                          );
+                        }
+                      },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith(
-                    (states) => Colors.blueAccent,
+                    (states) {
+                      if(states.contains(MaterialState.disabled)) {
+                        return Colors.grey;
+                      }
+                      return Colors.blueAccent;
+                    },
+                  ),
+                  textStyle: MaterialStateProperty.resolveWith(
+                    (states) {
+                      if(states.contains(MaterialState.disabled)) {
+                        return const TextStyle(fontSize: 16, color: Colors.white);
+                      }
+                      return const TextStyle(fontSize: 16, color: Colors.white);
+                    }
                   ),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     const RoundedRectangleBorder(
@@ -131,12 +148,12 @@ class LoginCodePage extends GetCommonView<LoginController> {
             ),
             const SizedBox(height: 50),
             OtpTextField(
-              numberOfFields: 5,
+              numberOfFields: 6,
               borderColor: Color(0xFF512DA8),
               showFieldAsBox: true,
               onCodeChanged: (String code) {},
               onSubmit: (String code) {
-                  controller.login(code);
+                controller.login(code);
               }, // end onSubmit
             ),
             const SizedBox(height: 50),

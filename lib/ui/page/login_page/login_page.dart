@@ -16,7 +16,8 @@ class LoginPage extends GetCommonView<LoginController> {
       body: Container(
         color: Colors.white,
         margin: const EdgeInsets.only(top: 1),
-        child: WebViewWidget(controller: controller.webviewController),
+        child: const Text("Login"),
+        // child: WebViewWidget(controller: controller.webviewController),
       ),
     );
   }
